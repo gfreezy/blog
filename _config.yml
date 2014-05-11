@@ -26,9 +26,9 @@ textile_ext:   textile
 
 excerpt_separator: "\n\n"
 
-# safe:        true
+safe:        true
 # baseurl:     ""
-url:         http://gfreezy.github.io
+# url:         http://gfreezy.github.io
 # lsi:         false
 
 defaults:

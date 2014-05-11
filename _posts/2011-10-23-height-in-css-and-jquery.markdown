@@ -6,7 +6,7 @@ tags: 技术 css height
 * 获取浏览器窗口的可见高度用 `document.body.clientHeight`
 * 获取当前网页的高度用 `document.height`
 
-** height %100是相对于父元素的高度来设置的。 **
+***height %100是相对于父元素的高度来设置的。***
 
 jquery获取height属性的几个方法
 

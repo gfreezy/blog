@@ -13,7 +13,7 @@ tags: scrapy python
 
 附上处理encoding的代码：
 
-```python
+{% highlight python %}
 import charset
 
 def parse(self, response):
@@ -26,4 +26,4 @@ def parse(self, response):
 		data = hxs.select("//div[@id='param-more']").extract()
 		#print encoding
 		print data
-```
+{% endhighlight %}

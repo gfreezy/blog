@@ -7,8 +7,8 @@ tags: 技术 mako python cache
 最近遇到网站速度慢的情况，排查许久没查出什么原因。于是想着匿名用户的访问量占据了一半多，如果这一部分的请求全部缓存下来，那么应该能够很大程度上提升网站的响应速度。
 之前已经在一些页面里面使用了Mako的页面缓存，具体的文档可以查看 http://docs.makotemplates.org/en/latest/caching.html
 
-```python
-#CacheImepl的定义
+{% highlight python %}
+# CacheImepl的定义
 class CMemcachedImpl(CacheImpl):
     def __init__(self, cache):
         from mysite.model.init_db import page_mc as mc
@@ -40,37 +40,37 @@ class CMemcachedImpl(CacheImpl):
 
     def invalidate(self, key, **kw):
         return self.mc.delete(key)
-```
+{% endhighlight %}
 
 模板中用法：
 
-```mako
+{% highlight mako %}
 <%block cached="True" cache_key="cache_key_to_generate" cache_timeout="3600">
 page content
 </%block>
-```
+{% endhighlight %}
 <!--more-->
 因为只对匿名用户缓存，最开始想到的就是动态的设置`cached`的值，登录用户为`False`，匿名用户为`True`。于是开始第一次尝试
 
-```mako
+{% highlight mako %}
 <%block cached="${request.user}" cache_key="cache_key_to_generate" cache_timeout="3600">
 page content
 </%block>
-```
+{% endhighlight %}
 
 结果Mako直接报错了，`${request.user}`无法`eval`。查看代码得知，Mako直接把`cached`的值当做Python代码执行。那么把`${}`去掉怎么样？
 
-```mako
+{% highlight mako %}
 <%block cached="request.user" cache_key="cache_key_to_generate" cache_timeout="3600">
 page content
 </%block>
-```
+{% endhighlight %}
 
 又报了错：`request`未定义。`eval`的上下文中没有`request`的定义。这个方法失败。
 
 Mako是可以在`block`里面加`cache_xxx`这种`cache_`为前缀的参数，这些参数是可以被`CacheImpl`读取到的。既然`cached`没办法动态的修改，那么我新加一个`cache_passthrough`的参数（用来表示穿透缓存，即不使用缓存）。匿名用户访问的时候`cache_passthrough`设置为`True`，登录用户访问的时候改为`False`。然后在`CacheImpl`里面根据读取到的`passthrough`来决定是否直接跳过缓存。
 
-```python
+{% highlight python %}
     def get_or_create(self, key, creation_function, **kw):
         passthrough = kw.get('passthrough', False)
         if passthrough:
@@ -90,16 +90,17 @@ Mako是可以在`block`里面加`cache_xxx`这种`cache_`为前缀的参数，�
             self.mc.set(key, value, timeout)
 
         return value
-```
+{% endhighlight %}
 
-```mako
+{% highlight mako %}
 <%block cached="True" cache_key="cache_key_to_generate" cache_timeout="3600" cache_passthrough="bool(request.user)">
 page content
 </%block>
-```
+{% endhighlight %}
 
 然后结果很奇怪。如果第一次是登录状态访问，那么之后无论登录与否，页面都不会被缓存。如果第一次是匿名访问，那么之后无论登录与否，返回的都是缓存下来的同一个结果。花时间看Mako的代码发现，Mako对除了`cache_key`以外的`cache_`的参数进行了缓存。
-```python
+
+{% highlight python %}
     def _get_cache_kw(self, kw, context):
         defname = kw.pop('__M_defname', None)
         if not defname:
@@ -115,18 +116,21 @@ page content
             tmpl_kw = tmpl_kw.copy()
             tmpl_kw.setdefault('context', context)
         return tmpl_kw
-```
+{% endhighlight %}
+
 完整代码在 mako/cache.py
 
 因为不明白为什么要缓存参数，还去Mako的邮件组里面提问了下。Michael Bayerh回复说`CacheImpl`这个东西的存在是为了抽象出从不同地方的缓存去数据这个行为。而不是用来做其他一些逻辑上的东西。原话如下
+
 ```
 but the arguments that are passed to get_or_create() were intended to be for the purposes of executing the “data retrieval” function, and not for the benefit of the cache impl wrapper itself.
 ```
+
 他推荐用`decorator`自己实现一个缓存的机制来做这个事情。`decorator`的文档在 http://docs.makotemplates.org/en/latest/filtering.html#decorating 。
 
 我的需求是对全站的页面根据登录状态进行缓存，所以缓存的key就根据URL来自动生成了。代码中的`request_hash`就是根据URL来生成hash值。
 
-```mako
+{% highlight mako %}
 <%!
 from mako.runtime import capture
 from mysite.ctrl.utils import request_hash
@@ -154,4 +158,4 @@ def cache_for_anomynous(fn):
 page content
 
 </%block>
-```
+{% endhighlight %}

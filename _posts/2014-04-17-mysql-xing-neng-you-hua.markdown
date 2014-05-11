@@ -9,9 +9,9 @@ tags: 技术 MySQL perf
 首先查看的时慢日志。因为近几天io都是100%，每秒的慢日志已经到了几十的量级，由于io的下降，导致很多原本不应该慢的查询也都在慢查询日志里面。肉眼已经很难看了。
 这时，就要使用percona的工具，pt-query-digest了。
 
-```bash
+{% highlight bash %}
 pt-query-digest /var/log/mysql/mysql-slow.log | vim -
-```
+{% endhighlight %}
 
 分析结果会在vim里面打开。pt-query-digest会根据查询花费的时间排序，按照顺序往下看，一个一个的看，是不是该建的索引没建，或者建的不合适，导致
 查询没用上索引。
@@ -21,18 +21,18 @@ pt-query-digest /var/log/mysql/mysql-slow.log | vim -
 
 这时候，一般可以用 pt-query-digest 的 `--processlist` 参数，对 MySQL 以一定的时间间隔执行 `show processlist`。
 
-```bash
+{% highlight bash %}
 pt-query-digest --user user_name --password pass_word --processlist localhost --interval 0.01 --run-time 10m | vim -
-```
+{% endhighlight %}
 
 抽样分析的结果同样会在 vim 中显示。 依次分析每条语句。
 
 * tcpdump
 如果 `show processlist` 还是没办法找到性能瓶颈，那就只好使用 `tcpdump` ，抓取 MySQL 的所有查询，放到 pt-query-digest 里面分析了。
 
-```bash
+{% highlight bash %}
 tcpdump -s 65535 -x -nn -q -tttt -i any -c 99999 port 3306 | pt-query-digest --type tcpdump --run-time 600s | vim -
-```
+{% endhighlight %}
 
 这会分析10分钟内 MySQL 所有的查询，依次排查就可以了，一般到这步基本都是可以定位到瓶颈。
 

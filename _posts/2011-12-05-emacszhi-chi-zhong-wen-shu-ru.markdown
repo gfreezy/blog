@@ -12,10 +12,10 @@ Emacs默认执行时是不支持ibus的中文输入。必须要 `LC_CTYPE=zh_CN.
 <!--more-->
 * 把默认的**emacs**文件重命名为**emacs-origin**，`mv /usr/bin/emacs /usr/bin/emacs-origin`
 * 新建一个**emacs**的脚本文件，并赋予可执行权限 `chmod +x /usr/bin/emacs`，文件内容如下：
-```bash
+{% highlight bash %}
 #!/bin/sh
 LC_CTYPE=zh_CN.utf8 /usr/bin/emacs-origin "$@"
-```
+{% endhighlight %}
 为了不用每次更新Emacs，都要这么操作一遍。于是改了下aur里面的PKGBUILD。
 把PKGBUILD，emacs.install，emacs-cn放在同一个文件夹下，然后
 `makepkg -C`，就能生成Archlinux的package，安装即可。以后每次要更新

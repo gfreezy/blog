@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Emacs笔记
 tags: 技术 emace shortcut
 ---

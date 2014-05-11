@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Python urllib2的timeout的问题
 ---
 ** 参考[How Python’s urllib2 Bit Me](http://www.somethinkodd.com/oddthinking/2010/05/01/how-pythons-urllib-bit-me/) **

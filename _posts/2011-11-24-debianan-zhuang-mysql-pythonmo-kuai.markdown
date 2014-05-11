@@ -1,4 +1,5 @@
 ---
+layout: post
 title: debian安装mysql-python模块
 tags: 技术 debian mysql python
 ---

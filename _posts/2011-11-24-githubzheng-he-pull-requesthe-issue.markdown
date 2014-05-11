@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Github整合Pull Request和Issue
 tags: 技术 github pr
 ---

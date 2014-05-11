@@ -1,4 +1,5 @@
 ---
+layout: post
 title: uwsgi与nginx的多站点配置
 tags: 技术 uwsgi nginx
 ---

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: debian6上nginx与uwsgi安装
 tags: 技术 debian nginx uwsgi
 ---

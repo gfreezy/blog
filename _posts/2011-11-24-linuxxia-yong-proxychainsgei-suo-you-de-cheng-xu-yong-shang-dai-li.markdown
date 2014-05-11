@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Linux下用proxychains给所有的程序用上代理
 tags: 技术 proxy linux
 ---

@@ -1,4 +1,5 @@
 ---
+layout: post
 title: 制作moosefs_debian安装包
 tags: 技术 moosefs debian
 ---

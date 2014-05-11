@@ -1,4 +1,5 @@
 ---
+layout: post
 title: win下设置emacs的默认编码
 ---
 Emacs只能指定新建buffer的默认编码，和读取文件时候的编码寻找顺序。文件写入编码

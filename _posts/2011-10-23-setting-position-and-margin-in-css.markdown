@@ -1,4 +1,5 @@
 ---
+layout: post
 title: css中position属性和margin设置
 tags: 技术 css position
 ---

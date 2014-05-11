@@ -1,4 +1,5 @@
 ---
+layout: post
 title: scrapy could not parse some html page correctly
 tags: scrapy python
 ---

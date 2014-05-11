@@ -1,4 +1,5 @@
 ---
+layout: post
 title: MySQL replica
 tags: mysql database replica
 ---

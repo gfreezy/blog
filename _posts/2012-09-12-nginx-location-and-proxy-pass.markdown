@@ -1,4 +1,5 @@
 ---
+layout: post
 title: nginx location and proxy_pass
 tags: nginx location proxy_pass
 ---

@@ -1,7 +1,9 @@
 ---
+layout: post
 title: mako根据条件判断是否使用页面缓存
 tags: 技术 mako python cache
 ---
+
 最近遇到网站速度慢的情况，排查许久没查出什么原因。于是想着匿名用户的访问量占据了一半多，如果这一部分的请求全部缓存下来，那么应该能够很大程度上提升网站的响应速度。
 之前已经在一些页面里面使用了Mako的页面缓存，具体的文档可以查看 http://docs.makotemplates.org/en/latest/caching.html
 

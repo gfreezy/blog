@@ -1,4 +1,5 @@
 ---
+layout: post
 title: MySQL性能优化
 tags: 技术 MySQL perf
 ---

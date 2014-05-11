@@ -1,4 +1,5 @@
 ---
+layout: post
 title: apt-get回滚testing到某一天的状态
 tags: debian apt-get
 ---

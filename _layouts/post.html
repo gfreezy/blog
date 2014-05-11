@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>{{ site.url }}</title>
+    <title>{{ page.title }}</title>
 
     <link rel="stylesheet" href="{{site.url}}/stylesheets/styles.css">
     <link rel="stylesheet" href="{{site.url}}/stylesheets/pygment_trac.css">
@@ -22,39 +22,17 @@
 
       </header>
       <section>
-        <ul class="post-list">
-          {% for post in paginator.posts %}
-            <li>
-              <a href="{{ post.url }}">{{ post.title }}</a>
-            </li>
-          {% endfor %}
-        </ul>
-        {% if paginator.total_pages > 1 %}
-        <div class="pagination">
-          {% if paginator.previous_page %}
-            <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
-          {% else %}
-            <span>&laquo; Prev</span>
-          {% endif %}
+        <h1>{{ page.title }}</h1>
 
-          {% for page in (1..paginator.total_pages) %}
-            {% if page == paginator.page %}
-              <em>{{ page }}</em>
-            {% elsif page == 1 %}
-              <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
-            {% else %}
-              <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
-            {% endif %}
-          {% endfor %}
+        <p class="post-date">{{ page.date | date: "%Y-%m-%d"}}</p>
 
-          {% if paginator.next_page %}
-            <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
-          {% else %}
-            <span>Next &raquo;</span>
-          {% endif %}
-        </div>
-        {% endif %}
+        {{ content }}
 
+      {% if page.previous %}
+      <p class="previous-post">
+        下一篇： <a href="{{page.previous.url}}">{{page.previous.title}}</a>
+      </p>
+      {% endif %}
       </section>
 
 

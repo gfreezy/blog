@@ -28,7 +28,7 @@ excerpt_separator: "\n\n"
 
 # safe:        true
 # baseurl:     ""
-# url:         http://localhost:4000
+url:         http://gfreezy.github.io
 # lsi:         false
 
 defaults:

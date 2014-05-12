@@ -33,7 +33,7 @@ published: true
 
 4. 增加启动脚本
 
-        wget https://gist.githubusercontent.com/gfreezy/f1dc2ee1620b2cbe970f/raw/65dce19ebd768571ce0f258916743ca4999e11fb/gistfile1.sh -O /etc/init.d/mfschunkserver
+        wget https://gist.githubusercontent.com/gfreezy/f1dc2ee1620b2cbe970f/raw/65dce19ebd768571ce0f258916743ca4999e11fb/mfschunkserver -O /etc/init.d/mfschunkserver
         chmod +x /etc/init.d/mfschunkserver
         update-rc.d mfschunkserver defaults
 

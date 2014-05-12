@@ -4,16 +4,15 @@ title: moosefs新部署chunkserver
 tagline: null
 category: null
 tags: []
-published: true
----
+published: true---
 1. 在 `/etc/apt/source.lst` 里面加入
 
-  deb     http://apt-repo:3143/ /
+    deb     http://apt-repo:3143/ /
   
 2. 运行一下命令来安装 moosefs 相关的包
 
-  apt-get update
-  apt-get install moosefs-chunkserver moosefs-client moosefs-master
+    apt-get update
+    apt-get install moosefs-chunkserver moosefs-client moosefs-master
   
 3. 修改配置文件
 

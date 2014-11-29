@@ -91,6 +91,6 @@ class ClassC(ClassB):
 你一定会有一个疑问，如果父类指定了 `__metaclass__` ， 父类的父类也指定了 `__metaclass__`；或者父类继承了多个父类，
 这多个父类都有自己的 `__metaclass__` ，那会发生什么情况？
 
-对于这一点，Python 对 `__metaclass__` 有一个限制，***就是一个对象的 `__metaclass__` 和它所有父类的所有 `__metaclass__` 
-必须有继承关系或者是同一个 *** ([参考Python源码](https://hg.python.org/cpython/file/0f837071fd97/Objects/typeobject.c#l1930)) 。
+对于这一点，Python 对 `__metaclass__` 有一个限制， **就是一个对象的 `__metaclass__` 和它所有父类的所有 `__metaclass__` 
+必须有继承关系或者是同一个** ([参考Python源码](https://hg.python.org/cpython/file/0f837071fd97/Objects/typeobject.c#l1930)) 。
 在这个基础上，真实使用的 `__metaclass__` 是继承链的最底端（既是最子类的那个 metaclass)。

@@ -16,7 +16,7 @@ class ClassA(object):
   @classmethod
   def method2(cls):
     pass
-{% end %}
+{% endhighlight %}
 
 可以定义类 `ClassA` 。而实际上 `class` 这个关键字是类似语法糖一样的东西。上面的 class 定义
 等价为
@@ -35,7 +35,7 @@ attrs = {
 }
 
 ClassA = type('ClassA', (object,), attrs)
-{% end %}
+{% endhighlight %}
 
 `type` 的三个参数分别表示 类的名字（`ClassA.__name__`中存储的名字), 继承的父类(可以是多个父类), 类的所有属性（类的各种方法和属性）。
 
@@ -53,7 +53,7 @@ class ClassB(object):
   
   def create_xxx(self):
     pass
-{% end %}
+{% endhighlight %}
 
 在 ClassB 的属性中，比之前多了一个 `__metaclass__` 的属性。`__metaclass__` 是做什么用的呢？
 我们先把这个类用 `type(name, bases, attrs)` 的方式重新写下。
@@ -73,7 +73,7 @@ attrs = {
 }
 
 ClassB = MetaA('ClassB', (object,), attrs)
-{% end %}
+{% endhighlight %}
 
 到这里，你一定看明白了， `__metaclass__` 的属性就是替换 `type` 的。 `__metaclass__` 的默认值就是 `type`。
 
@@ -82,7 +82,7 @@ ClassB = MetaA('ClassB', (object,), attrs)
 {% highlight python %}
 class ClassC(ClassB):
   pass
-{% end %}
+{% endhighlight %}
 
 我想你一定猜到了，`ClassC` 会用 `ClassB` 的 `__metaclass__` 属性来生成自己。当一个类自己没有定义 `__metaclass__` 
 的情况下，它会去父类找 `__metaclass__` ，如果父类没有，就去父类的父类找，一直到找到为止。如果所有到父类都没有

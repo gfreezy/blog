@@ -8,7 +8,7 @@ published: true
 ---
 在 Python 里面，class 也是一个对象，它是 type 实例化后生成的对象。我们一般用
 
-```python
+{% highlight python %}
 class ClassA(object):
   def method1(self):
     pass
@@ -16,12 +16,12 @@ class ClassA(object):
   @classmethod
   def method2(cls):
     pass
-```
+{% end %}
 
 可以定义类 `ClassA` 。而实际上 `class` 这个关键字是类似语法糖一样的东西。上面的 class 定义
 等价为
 
-```python
+{% highlight python %}
 def method1(self):
   pass
   
@@ -35,13 +35,13 @@ attrs = {
 }
 
 ClassA = type('ClassA', (object,), attrs)
-```
+{% end %}
 
 `type` 的三个参数分别表示 类的名字（`ClassA.__name__`中存储的名字), 继承的父类(可以是多个父类), 类的所有属性（类的各种方法和属性）。
 
 以上是一个不指定 `__metaclass__` 的 class 的生成过程。但是在 ORM 的代码中，经常可以看到类似这样的写法
 
-```python
+{% highlight python %}
 class MetaA(type):
   def __new__(cls, name, bases, attrs):
     # some work
@@ -53,12 +53,12 @@ class ClassB(object):
   
   def create_xxx(self):
     pass
-```
+{% end %}
 
 在 ClassB 的属性中，比之前多了一个 `__metaclass__` 的属性。`__metaclass__` 是做什么用的呢？
 我们先把这个类用 `type(name, bases, attrs)` 的方式重新写下。
 
-```python
+{% highlight python %}
 class MetaA(type):
   def __new__(cls, name, bases, attrs):
     # some work
@@ -73,16 +73,16 @@ attrs = {
 }
 
 ClassB = MetaA('ClassB', (object,), attrs)
-```
+{% end %}
 
 到这里，你一定看明白了， `__metaclass__` 的属性就是替换 `type` 的。 `__metaclass__` 的默认值就是 `type`。
 
 那如果一个类从某个指定了 `__metaclass__` 的类继承，而它自身没指定 `__metaclass__` 会怎么样呢？
 
-```python
+{% highlight python %}
 class ClassC(ClassB):
   pass
-```
+{% end %}
 
 我想你一定猜到了，`ClassC` 会用 `ClassB` 的 `__metaclass__` 属性来生成自己。当一个类自己没有定义 `__metaclass__` 
 的情况下，它会去父类找 `__metaclass__` ，如果父类没有，就去父类的父类找，一直到找到为止。如果所有到父类都没有

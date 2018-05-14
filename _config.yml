@@ -10,8 +10,6 @@ show_drafts: nil
 limit_posts: 0
 highlighter: pygments
 
-relative_permalinks: true
-
 # permalink:     date
 paginate_path: ':num'
 paginate:      25

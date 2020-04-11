@@ -104,7 +104,8 @@ video::http://media.w3.org/2010/05/sintel/trailer.mp4[]
 ----
 
 Markdown 本来定位是标记语言，并不与浏览器绑定，但是一旦使用 HTML，就意味着只能在浏览器里面渲染。而且由于不同的 Markdown 编辑器、渲染程序
-实现功能不一样，同一份 Markdown 文档，在不同的平台使用，都需要人工做一些修改。
+实现功能不一样，同一份 Markdown 文档，在不同的平台使用，都需要人工做一些修改。footnote:[https://medium.com/@Mister_Gold/stop-using-markdown-for-documentation-5bda05ad17e3]
+footnote:[https://joearms.github.io/#2016-03-21%20Why%20Markdown%20Sucks]
 
 Asciidoctor 在 Markdown 的基础上，重新设计了一套根据完善的标记语言，很好地解决了 Markdown 遇到的问题。这篇文章就是用 Asciidoctor 写的。
 具体的格式可以参考 https://asciidoctor.org/[Asciidoctor 官网]。

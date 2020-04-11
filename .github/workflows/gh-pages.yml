@@ -1,4 +1,5 @@
-name: Website Generator
+name: github pages
+
 on:
   push:
     branches:
@@ -8,15 +9,21 @@ jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps:
-      - name: Checkout source to workplace
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          submodules: true  # Fetch Hugo themes
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
-      - name: Build the website to public directory
-        uses: gaol/hugo-gh-action@v1.2
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+           extended: true
 
-      - name: Deploy the generated website from public sub directory to master branch
+      - name: Build
+        run: hugo --minify
+
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          publish_branch: master

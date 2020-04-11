@@ -22,6 +22,13 @@ jobs:
           # Append "extended_" to the begining to use Hugo Extended
           args: --gc --minify --cleanDestinationDir
             # Use if you want to pass some custom arguments to Hugo
+        working-directory: hugo
+
+      - name: Copy public to root dir
+        run: |
+          ls | grep -v CNAME |grep -v hugo|xargs rm -rf || true
+          mv hugo/public/* .
+        shell: bash
 
       - name: Deploy
         uses: stefanzweifel/git-auto-commit-action@v4.1.2

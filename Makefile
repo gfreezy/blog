@@ -18,7 +18,7 @@ install: .bin/hugo
 
 	# install hugo
 	mkdir -p ".bin"
-	[-f hugo_extended_$(HUGO_VERSION)_$(OS)-64bit.tar.gz] || wget https://github.com/gohugoio/hugo/releases/download/v$(HUGO_VERSION)/hugo_extended_$(HUGO_VERSION)_$(OS)-64bit.tar.gz
+	[ -f hugo_extended_$(HUGO_VERSION)_$(OS)-64bit.tar.gz ] || wget https://github.com/gohugoio/hugo/releases/download/v$(HUGO_VERSION)/hugo_extended_$(HUGO_VERSION)_$(OS)-64bit.tar.gz
 	tar -C .bin -xzvf hugo_extended_$(HUGO_VERSION)_$(OS)-64bit.tar.gz
 	rm -rf hugo_extended_$(HUGO_VERSION)_$(OS)-64bit.tar.gz
 

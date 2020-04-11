@@ -1,7 +1,7 @@
 ---
 layout: post
 title: mako根据条件判断是否使用页面缓存
-date: 2019-03-26
+date: 2014-02-19
 tags:
 - mako
 - python

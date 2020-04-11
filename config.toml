@@ -1,0 +1,9 @@
+baseURL = "http://blog.allsunday.io/"
+languageCode = "en-us"
+title = "allsunday"
+theme = "journal"
+
+[params]
+description = "allsunday."
+githubUsername = "gfreezy"
+tagline = "追求卓越成功会在不经意间追上你"

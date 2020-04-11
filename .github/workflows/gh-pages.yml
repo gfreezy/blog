@@ -23,4 +23,3 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4.1.2
         with:
           commit_message: hugo publish
-          file_pattern: public

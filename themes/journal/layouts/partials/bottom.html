@@ -14,11 +14,11 @@
           <br>
 
           {{ if isset .Site.Params "githubusername" -}}
-          <a itemprop="sameAs" href="https://github.com/{{ .Site.Params.githubUsername }}" title="GitHub">GH</a>
+          <a itemprop="sameAs" href="https://github.com/{{ .Site.Params.githubUsername }}" title="GitHub">Github</a>
           {{- end }}
 
           {{ if isset .Site.Params "twitterusername" -}}
-          <a itemprop="sameAs" href="https://twitter.com/{{ .Site.Params.twitterUsername }}" title="Twitter">TW</a>
+          <a itemprop="sameAs" href="https://twitter.com/{{ .Site.Params.twitterUsername }}" title="Twitter">Twitter</a>
           {{- end}}
 
           {{ if isset .Site.Params "gpg" -}}

@@ -47,7 +47,7 @@ a:hover {
 
 .site-footer {
     margin: 3rem 0 0;
-    font-size: .8125rem;
+    font-size: 1rem;
 }
 
 .site-footer [itemprop="sameAs"] + [itemprop="sameAs"] {

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Hugo 0.69.0" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="">
+  <meta property="og:url" content="http://blog.allsunday.io/post/2011-11-24-winxia-she-zhi-emacsde-mo-ren-bian-ma/">
+
+  <title>win下设置emacs的默认编码 - allsunday</title>
+  <meta property="og:title" content="win下设置emacs的默认编码 - allsunday">
+  <meta property="og:type" content="article">
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Arvo:400,700">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <link rel="stylesheet" href="/css/asciidoctor.css">
+  <link rel="stylesheet" href="/css/journal.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="allsunday">
+
+</head>
+
+<body>
+  <div class="container">
+
+    <nav class="site-nav">
+      <a href="http://blog.allsunday.io/">Index</a>
+    </nav>
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">win下设置emacs的默认编码</h1>
+      <time class="post-date" datetime="2011-11-24 00:00:00 UTC">24 Nov 2011</time>
+    </header>
+
+    <p>Emacs只能指定新建buffer的默认编码，和读取文件时候的编码寻找顺序。文件写入编码
+Emacs会根据文件内容来猜测，并保持原有的编码不变。如想改变写入编码，需手动改变。</p>
+<pre><code>(set-buffer-file-coding-system 'utf-8-unix)
+;;指定当前buffer的写入编码，只对当前buffer有效，即此命令写在配置文件中无效，只能
+通过M-x来执行
+
+(setq default-buffer-file-coding-system 'utf-8-unix)
+;;指定新建buffer的默认编码为utf-8-unix，换行符为unix的方式
+
+(prefer-coding-system 'utf-8)
+;;将utf-8放到编码顺序表的最开始，即先从utf-8开始识别编码，此命令可以多次使用，后
+指定的编码先探测
+
+(set-language-environment 'utf-8)
+;;指定Emacs的语言环境，按照特定语言环境设置前面的两个变量
+</code></pre>
+<p>Windows默认情况下，可以识别中文，也可以输入中文，但是新建文件的编码为
+chinese-gbk-dos，为了改为utf-8，并且换行符为unix格式，在配置文件中加入下面这行。</p>
+<pre><code>(setq default-buffer-file-coding-system 'utf-8-unix)
+</code></pre>
+<hr>
+<p>附上手动修改编码的方法：</p>
+<ul>
+<li>M-x set-buffer-file-coding-system <!-- raw HTML omitted --> coding 保存后，文件即是coding编码</li>
+<li>C-x <!-- raw HTML omitted --> f coding 保存后，文件为coding编码</li>
+<li>C-x <!-- raw HTML omitted --> r coding 以coding编码重新读取文件</li>
+<li>C-x <!-- raw HTML omitted --> c coding <!-- raw HTML omitted --> 以coding编码执行接下去输入的命令，如
+C-x <!-- raw HTML omitted --> c utf-8 <!-- raw HTML omitted --> C-x C-f a.txt <!-- raw HTML omitted --> 用utf-8编码打开a.txt文件</li>
+</ul>
+
+
+  </article>
+
+
+      <footer class="site-footer">
+        <span itemscope itemtype="http://schema.org/Person">
+          <link itemprop="url" href="http://blog.allsunday.io/">
+          <span itemprop="name"></span>
+
+          <br>
+
+          <a itemprop="sameAs" href="https://github.com/gfreezy" title="GitHub">Github</a>
+
+          
+
+          
+        </span>
+
+        
+      </footer>
+    </div>
+
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  </body>
+</html>
+

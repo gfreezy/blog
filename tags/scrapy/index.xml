@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>scrapy on allsunday</title>
+    <link>http://blog.allsunday.io/tags/scrapy/</link>
+    <description>Recent content in scrapy on allsunday</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 Sep 2012 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://blog.allsunday.io/tags/scrapy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>scrapy could not parse some html page correctly</title>
+      <link>http://blog.allsunday.io/post/2012-09-06-scrapy-could-not-parse-some-html-page-correctly/</link>
+      <pubDate>Thu, 06 Sep 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.allsunday.io/post/2012-09-06-scrapy-could-not-parse-some-html-page-correctly/</guid>
+      <description>在用Scrapy爬取淘宝的搜索结果时，发现很多的页面通过XPathSelector转换后丢失了很多的数据，只留下了一小部分的页面。
+起初是以为淘宝用了JS来动态加载搜索结果，用Chrome Develop Tool禁用了JS，发现还是没有丢失页面数据。也查了下，没有使用跳转。然后用scrapy shell url来测试这个URL，hxs.extract()的结果要比response.body中的内容少了一个数量级。
+问题出在了lxml的处理上。淘宝的页面是使用GBK编码的，所以scrapy的encoding处理出了问题。Google之，终于在stackoverflow上面找到了一篇文章。按照它上面说的加上encoding处理后，问题解决了。
+看样子以后爬国内的页面可要长点心了，一个页面编码问题卡了我一整天。
+附上处理encoding的代码：
+{% highlight python %} import charset
+def parse(self, response):
+ encoding = chardet.detect(response.body)[&#39;encoding&#39;] if encoding != &#39;utf-8&#39;: response.body = response.body.decode(encoding, &#39;replace&#39;).encode(&#39;utf-8&#39;) hxs = HtmlXPathSelector(response) data = hxs.select(&amp;quot;//div[@id=&#39;param-more&#39;]&amp;quot;).extract() #print encoding print data  {% endhighlight %}</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -36,7 +36,7 @@ drop 的命令，结果生效了，爬虫被成功的屏蔽了。
 
 这个奇怪的问题在一段时间内都没有弄明白，直到有天突然在 http://blog.163.com/leekwen@126/blog/static/33166229200981954962/[LeeKwen的博客] 上发现了这张图。
 
-image:null-07a8528e-6bd7-43f8-b3a4-291ef2cdfdef.jpg[Netfilter 的 NAT 表]
+image:/images/post/null-07a8528e-6bd7-43f8-b3a4-291ef2cdfdef.jpg[Netfilter 的 NAT 表]
 
 我突然觉得上帝对我敞开了大门，豁然开朗。之前的问题也都迎刃而解。
 

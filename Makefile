@@ -1,5 +1,5 @@
 HUGO_VERSION:="0.69.0"
-OS:="Linux"
+OS:=$([ "$(uname)" == "Darwin" ] && echo "macOS" || echo "Linux")
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 BIN:="$(ROOT_DIR)/.bin"
 

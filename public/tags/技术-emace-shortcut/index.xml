@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 emace shortcut on allsunday</title><link>http://blog.allsunday.io/tags/%E6%8A%80%E6%9C%AF-emace-shortcut/</link><description>Recent content in 技术 emace shortcut on allsunday</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 24 Nov 2011 00:00:00 +0000</lastBuildDate><atom:link href="http://blog.allsunday.io/tags/%E6%8A%80%E6%9C%AF-emace-shortcut/index.xml" rel="self" type="application/rss+xml"/><item><title>Emacs笔记</title><link>http://blog.allsunday.io/post/2011-11-24-emacsbi-ji/</link><pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate><guid>http://blog.allsunday.io/post/2011-11-24-emacsbi-ji/</guid><description>&lt;h2 id="buffer操作">Buffer操作&lt;/h2>
-&lt;ul>
-&lt;li>在新buffer打开文件 C-x C-f&lt;/li>
-&lt;li>在当前buffer打开文件 C-x C-v&lt;/li>
-&lt;li>向当前buffer追加文件 C-x i&lt;/li>
-&lt;li>另存为 C-x C-w&lt;/li>
-&lt;/ul></description></item></channel></rss>

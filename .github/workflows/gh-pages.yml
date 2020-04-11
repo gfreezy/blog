@@ -15,20 +15,7 @@ jobs:
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Publish Site
-        uses: chabad360/hugo-actions@master
-        with:
-          buildPath: 'public'
-          # Use if your site requires a specific version of Hugo
-          # Append "extended_" to the begining to use Hugo Extended
-          args: --gc --minify --cleanDestinationDir
-            # Use if you want to pass some custom arguments to Hugo
-        working-directory: hugo
-
-      - name: Copy public to root dir
-        run: |
-          ls | grep -v CNAME |grep -v hugo|xargs rm -rf || true
-          mv hugo/public/* .
-        shell: bash
+        run: make
 
       - name: Deploy
         uses: stefanzweifel/git-auto-commit-action@v4.1.2

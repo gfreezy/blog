@@ -1,7 +1,11 @@
 HUGO_VERSION:="0.69.0"
-OS:=$([ "$(uname)" == "Darwin" ] && echo "macOS" || echo "Linux")
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 BIN:="$(ROOT_DIR)/.bin"
+ifeq ($(shell uname), Darwin)
+	OS:="macOS"
+else
+	OS:="Linux"
+endif
 
 .PHONY: build
 
@@ -13,7 +17,7 @@ install: .bin/hugo
 
 .bin/hugo:
 	# install asciidoctor
-	gem install asciidoctor
+	[ $(OS) == "macOS" ] && brew install asciidoctor || gem install asciidoctor
 
 	# install hugo
 	mkdir -p ".bin"

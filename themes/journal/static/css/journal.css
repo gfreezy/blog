@@ -1,0 +1,111 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+a {
+    color: currentColor;
+}
+
+a:hover {
+    color: #686868;
+}
+
+.container {
+    width: 100%;
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+@media screen and (min-width: 800px) {
+    .container {
+        padding: 1rem 0;
+    }
+}
+
+.site-header,
+.site-nav {
+    margin-bottom: 2rem;
+}
+
+.site-header h1,
+.site-nav h1 {
+    margin-bottom: .5rem;
+    margin-top: .5em;
+}
+
+.site-nav a::before {
+    content: '\2190';
+    margin-right: .25rem;
+}
+
+.site-footer {
+    margin: 3rem 0 0;
+    font-size: .8125rem;
+}
+
+.site-footer [itemprop="sameAs"] + [itemprop="sameAs"] {
+    margin-left: .4rem;
+}
+
+@media screen and (min-width: 800px) {
+    .site-footer {
+        margin-bottom: .5rem;
+    }
+}
+
+.posts {
+    font-size: 18px;
+}
+
+.posts ol {
+    margin-left: 0;
+    list-style: none;
+}
+
+.posts li {
+    margin-bottom: .5rem;
+}
+
+@media screen and (min-width: 375px) {
+    .posts li {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.posts time {
+    display: block;
+}
+
+@media screen and (min-width: 375px) {
+    .posts time {
+        flex: 0 0 auto;
+    }
+}
+
+.posts time + a {
+    margin-left: 2rem;
+}
+
+@media screen and (min-width: 375px) {
+    .posts time + a {
+        margin-left: 1rem;
+    }
+}
+
+.post .post-header {
+    margin-bottom: 3rem;
+}
+
+.post .post-date {
+    display: block;
+    margin: 0 0 1rem;
+    text-align: right;
+}

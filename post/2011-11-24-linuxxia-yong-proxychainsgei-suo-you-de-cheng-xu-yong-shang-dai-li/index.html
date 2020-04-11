@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Hugo 0.69.0" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="">
+  <meta property="og:url" content="http://blog.allsunday.io/post/2011-11-24-linuxxia-yong-proxychainsgei-suo-you-de-cheng-xu-yong-shang-dai-li/">
+
+  <title>Linux下用proxychains给所有的程序用上代理 - allsunday</title>
+  <meta property="og:title" content="Linux下用proxychains给所有的程序用上代理 - allsunday">
+  <meta property="og:type" content="article">
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Arvo:400,700">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <link rel="stylesheet" href="/css/asciidoctor.css">
+  <link rel="stylesheet" href="/css/journal.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="allsunday">
+
+</head>
+
+<body>
+  <div class="container">
+
+    <nav class="site-nav">
+      <a href="http://blog.allsunday.io/">Index</a>
+    </nav>
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">Linux下用proxychains给所有的程序用上代理</h1>
+      <time class="post-date" datetime="2011-11-24 00:00:00 UTC">24 Nov 2011</time>
+    </header>
+
+    <p><strong>Archlinux</strong> 下，只需要<code>yaourt -S proxychains</code>就能安装完毕，然后编辑<code>/etc/proxychains.conf</code>，修改proxy的地址为<code>127.0.0.1</code>，端口为7070。</p>
+<p>然后在本地开启ssh代理，<code>ssh -CfNg -D 127.0.0.1:7070 gfreezy@norida.me</code>。一切的准备工作就完成了。</p>
+<p>以后所有需要通过ssh代理来访问网络的程序，只要在命令前面加<code>proxychains</code>就可以了。如访问twitter，只需<code>proxychains wget twitter.com</code>就能获得twitter的首页了。</p>
+
+
+  </article>
+
+
+      <footer class="site-footer">
+        <span itemscope itemtype="http://schema.org/Person">
+          <link itemprop="url" href="http://blog.allsunday.io/">
+          <span itemprop="name"></span>
+
+          <br>
+
+          <a itemprop="sameAs" href="https://github.com/gfreezy" title="GitHub">Github</a>
+
+          
+
+          
+        </span>
+
+        
+      </footer>
+    </div>
+
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  </body>
+</html>
+

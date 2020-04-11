@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nginx on allsunday</title>
+    <link>http://blog.allsunday.io/tags/nginx/</link>
+    <description>Recent content in nginx on allsunday</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 12 Sep 2012 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://blog.allsunday.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>nginx location and proxy_pass</title>
+      <link>http://blog.allsunday.io/post/2012-09-12-nginx-location-and-proxy-pass/</link>
+      <pubDate>Wed, 12 Sep 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.allsunday.io/post/2012-09-12-nginx-location-and-proxy-pass/</guid>
+      <description>&lt;p&gt;&lt;em&gt;Nginx&lt;/em&gt;的&lt;em&gt;location&lt;/em&gt;的格式为&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;location [=|~|~*|^~] uri { … }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;=&lt;/code&gt;表示完全匹配&lt;em&gt;uri&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;^~&lt;/code&gt;表示以&lt;em&gt;uri&lt;/em&gt;打头&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~&lt;/code&gt;表示正则匹配&lt;em&gt;uri&lt;/em&gt;，且不区分大小写&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~*&lt;/code&gt;表示正则匹配&lt;em&gt;uri&lt;/em&gt;，但是区分大小写&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Nginx&lt;/em&gt;匹配&lt;em&gt;location&lt;/em&gt;时，有一定的优先级，&lt;code&gt;=&lt;/code&gt;优先级最高，其次&lt;code&gt;^~&lt;/code&gt;，最后是&lt;code&gt;~&lt;/code&gt;和&lt;code&gt;~*&lt;/code&gt;。同一类型的匹配按照出现的先后顺序匹配。&lt;/p&gt;
+&lt;p&gt;下面是一个例子，来自&lt;a href=&#34;http://wiki.nginx.org/HttpCoreModule#location&#34;&gt;http://wiki.nginx.org/HttpCoreModule#location&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;location  = / {
+    # matches the query / only.
+    [ configuration A ]
+}
+location  / {
+    # matches any query, since all queries begin with /, but regular
+    # expressions and any longer conventional blocks will be
+    # matched first.
+    [ configuration B ]
+}
+location ^~ /images/ {
+    # matches any query beginning with /images/ and halts searching,
+    # so regular expressions will not be checked.
+    [ configuration C ]
+}
+location ~* \.(gif|jpg|jpeg)$ {
+    # matches any request ending in gif, jpg, or jpeg. However, all
+    # requests to the /images/ directory will be handled by
+    # Configuration C.
+    [ configuration D ]
+}
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>debian6上nginx与uwsgi安装</title>
+      <link>http://blog.allsunday.io/post/2011-11-24-debian6shang-nginxyu-uwsgian-zhuang/</link>
+      <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.allsunday.io/post/2011-11-24-debian6shang-nginxyu-uwsgian-zhuang/</guid>
+      <description>见linode的文档</description>
+    </item>
+    
+    <item>
+      <title>uwsgi与nginx的多站点配置</title>
+      <link>http://blog.allsunday.io/post/2011-11-24-uwsgiyu-nginxde-duo-zhan-dian-pei-zhi/</link>
+      <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.allsunday.io/post/2011-11-24-uwsgiyu-nginxde-duo-zhan-dian-pei-zhi/</guid>
+      <description>From uWSGI Examples
+We have two virtualenv, DJANGOVENVS/pinax1 and DJANGOVENVS/pinax2.
+Each virtualenv contains a pinax site in the directory &amp;lsquo;pinaxsite&amp;rsquo; and a script (called pinax.py) in every pinaxsite/deploy directory (that is a copy of deploy/pinax.wsgi)
+Now configure nginx
+server { listen 8080; server_name sirius.local; location / { include uwsgi_params; uwsgi_pass 127.0.0.1:3031; uwsgi_param UWSGI_PYHOME /Users/roberto/DJANGOVENVS/pinax1; uwsgi_param UWSGI_SCRIPT deploy.pinax; uwsgi_param UWSGI_CHDIR /Users/roberto/DJANGOVENVS/pinax1/pinaxsite; } } server { listen 8080; server_name localhost; location / { include uwsgi_params; uwsgi_pass 127.</description>
+    </item>
+    
+  </channel>
+</rss>

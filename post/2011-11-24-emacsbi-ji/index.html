@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Hugo 0.69.0" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="">
+  <meta property="og:url" content="http://blog.allsunday.io/post/2011-11-24-emacsbi-ji/">
+
+  <title>Emacs笔记 - allsunday</title>
+  <meta property="og:title" content="Emacs笔记 - allsunday">
+  <meta property="og:type" content="article">
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Arvo:400,700">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <link rel="stylesheet" href="/css/asciidoctor.css">
+  <link rel="stylesheet" href="/css/journal.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="allsunday">
+
+</head>
+
+<body>
+  <div class="container">
+
+    <nav class="site-nav">
+      <a href="http://blog.allsunday.io/">Index</a>
+    </nav>
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">Emacs笔记</h1>
+      <time class="post-date" datetime="2011-11-24 00:00:00 UTC">24 Nov 2011</time>
+    </header>
+
+    <h2 id="buffer操作">Buffer操作</h2>
+<ul>
+<li>在新buffer打开文件 C-x C-f</li>
+<li>在当前buffer打开文件 C-x C-v</li>
+<li>向当前buffer追加文件 C-x i</li>
+<li>另存为 C-x C-w</li>
+</ul>
+<h2 id="一般操作">一般操作</h2>
+<ul>
+<li>恢复早前的删除 C-y</li>
+<li>光标返回上次操作的位置 C-U C-SPC</li>
+<li>更早前的 M-y</li>
+<li>标记缓冲区 C-x h</li>
+<li>标记段落 M-h</li>
+<li>交换两个单词 M-t  在两个单词中间按</li>
+<li>交换两行 C-x C-t</li>
+<li>行首  C-a</li>
+<li>行尾 C-e</li>
+<li>跳转到当前行第一个非空字符 M-m</li>
+<li>把当前行合并到上一行 M-^</li>
+<li>M-；注释</li>
+<li>M-j 在新行注释</li>
+<li>转换成大写字母 M-u</li>
+<li>反向转换成大写字母 M&ndash; M-u</li>
+<li>转换成小写字母 M-l</li>
+<li>反向转换成小写字母  M&ndash; M-l</li>
+<li>首字母大写  M-c</li>
+<li>反向首字母大写 M&ndash; M-c</li>
+</ul>
+<h2 id="查找">查找</h2>
+<ul>
+<li>查找 C-s</li>
+<li>复制光标所在单词来查找  C-s C-w</li>
+<li>M-% 查找替换  . 在当前位置替换后推出
+<ul>
+<li>,替换并显示当前位置</li>
+<li>!对后面文本全部替换</li>
+<li>^返回上次替换位置</li>
+<li>C-r 进入递归编辑</li>
+<li>C-w 删除此处并进入递归编辑</li>
+<li>C-M-c 退出递归编辑</li>
+<li>C-] 退出递归编辑和替换</li>
+</ul>
+</li>
+</ul>
+<p>调出最后一条复杂命令 C-x ESC ESC</p>
+<h2 id="正则搜索--c-m-s-c-m-r">正则搜索  C-M-s C-M-r</h2>
+<ul>
+<li>^ 匹配行尾</li>
+<li>$ 匹配行首</li>
+<li>. 匹配单个字符</li>
+<li>.* 匹配任意字符</li>
+<li>&lt; 匹配单词开头</li>
+<li>&gt; 匹配单词结尾</li>
+<li>[] 匹配方括号中任意一个字符</li>
+</ul>
+<p>在只读和正常之间切换 C-x C-q</p>
+<h2 id="窗口操作">窗口操作</h2>
+<ul>
+<li>加高当前窗口 C-x ^</li>
+<li>加宽当前窗口 C-x }</li>
+<li>收缩当前窗口到缓冲区大小  C-x -</li>
+<li>窗口大小相同 C-x +</li>
+<li>在新窗口打开文件 C-x 4 f</li>
+<li>在另一个窗口中选择另一个缓冲区 C-x 4 b</li>
+</ul>
+<h2 id="缓冲区列表-m-x-list-buffers">缓冲区列表 M-x list-buffers</h2>
+<ul>
+<li>d 加上删除标记</li>
+<li>k 加上删除标记</li>
+<li>s 加上保存标记</li>
+<li>u 去掉操作标记</li>
+<li>x 执行标记</li>
+<li>del 去掉上一个编辑缓冲区上的操作标记</li>
+<li>~ 加上未修改标记</li>
+<li>% 转换只读状态</li>
+<li>1 把编辑缓冲区满屏显示</li>
+<li>2 把这个编辑缓冲区和下一个编辑缓冲区显示到连哥哥水平窗口里面</li>
+<li>f 把原本显示编辑缓冲区清单的窗口里显示此编辑缓冲区的内容</li>
+<li>o 把此编辑缓冲区显示到另外一个窗口里面</li>
+<li>m 加上待显示标志</li>
+<li>v 显示用m命令加上的带显示标志的编辑缓冲区</li>
+</ul>
+<h2 id="书签">书签</h2>
+<ul>
+<li>设置书签 C-x r m</li>
+<li>跳到书签 C-x r b</li>
+<li>重命名书签 M-x bookmark-rename</li>
+<li>删除书签 M-x bookmark-delete</li>
+<li>书签列表 C-x r l</li>
+</ul>
+<h2 id="dired模式-c-x-d">Dired模式 C-x d</h2>
+<ul>
+<li>v 显示文件内容，q返回dired模式</li>
+<li>C 复制文件</li>
+<li>d 标记删除</li>
+<li>D 删除文件</li>
+<li>f 编辑文件</li>
+<li>g 刷新dired</li>
+<li>R 重命名文件</li>
+<li>
+<ul>
+<li>新建文件夹</li>
+</ul>
+</li>
+<li>Q 在标记的文件内查找替换</li>
+<li>M-backspace 取消所有标记</li>
+<li>！在当前标记的文件上执行命令</li>
+<li>%m 标记匹配的文件</li>
+<li>%d 给匹配文件加上删除标记</li>
+</ul>
+<h2 id="宏相关操作">宏相关操作</h2>
+<ul>
+<li>录制宏 C-x （</li>
+<li>结束宏 C-x ）</li>
+<li>运行宏 C-x e</li>
+<li>保存宏 M-x name-last-kbd-macro</li>
+<li>把宏保存到文件 M-x insert-kbd-macro</li>
+<li>在宏中插入递归编辑 C-u C-x q</li>
+</ul>
+
+  </article>
+
+
+      <footer class="site-footer">
+        <span itemscope itemtype="http://schema.org/Person">
+          <link itemprop="url" href="http://blog.allsunday.io/">
+          <span itemprop="name"></span>
+
+          <br>
+
+          <a itemprop="sameAs" href="https://github.com/gfreezy" title="GitHub">Github</a>
+
+          
+
+          
+        </span>
+
+        
+      </footer>
+    </div>
+
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  </body>
+</html>
+

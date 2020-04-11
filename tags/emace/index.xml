@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>emace on allsunday</title>
+    <link>http://blog.allsunday.io/tags/emace/</link>
+    <description>Recent content in emace on allsunday</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 24 Nov 2011 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://blog.allsunday.io/tags/emace/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Emacs笔记</title>
+      <link>http://blog.allsunday.io/post/2011-11-24-emacsbi-ji/</link>
+      <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.allsunday.io/post/2011-11-24-emacsbi-ji/</guid>
+      <description>&lt;h2 id=&#34;buffer操作&#34;&gt;Buffer操作&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;在新buffer打开文件 C-x C-f&lt;/li&gt;
+&lt;li&gt;在当前buffer打开文件 C-x C-v&lt;/li&gt;
+&lt;li&gt;向当前buffer追加文件 C-x i&lt;/li&gt;
+&lt;li&gt;另存为 C-x C-w&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

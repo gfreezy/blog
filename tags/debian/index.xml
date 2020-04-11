@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>debian on allsunday</title>
+    <link>http://blog.allsunday.io/tags/debian/</link>
+    <description>Recent content in debian on allsunday</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 24 Nov 2011 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://blog.allsunday.io/tags/debian/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>debian6上nginx与uwsgi安装</title>
+      <link>http://blog.allsunday.io/post/2011-11-24-debian6shang-nginxyu-uwsgian-zhuang/</link>
+      <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.allsunday.io/post/2011-11-24-debian6shang-nginxyu-uwsgian-zhuang/</guid>
+      <description>见linode的文档</description>
+    </item>
+    
+    <item>
+      <title>debian安装mysql-python模块</title>
+      <link>http://blog.allsunday.io/post/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</link>
+      <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.allsunday.io/post/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</guid>
+      <description>直接 pip install mysql-python 提示 mysql-config 未找到，google了下，发现要先安装libmysql++-dev。
+apt-get install limysql++-dev pip install mysql-python  安装完成，可以在python中用mysql了。</description>
+    </item>
+    
+  </channel>
+</rss>

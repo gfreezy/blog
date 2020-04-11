@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Hugo 0.69.0" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="">
+  <meta property="og:url" content="http://blog.allsunday.io/post/2020-04-11-%E4%BD%BF%E7%94%A8hugo&#43;asciidoctor%E5%9C%A8github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
+
+  <title>使用hugo&#43;asciidoctor在GitHub搭建博客 - allsunday</title>
+  <meta property="og:title" content="使用hugo&#43;asciidoctor在GitHub搭建博客 - allsunday">
+  <meta property="og:type" content="article">
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Arvo:400,700">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <link rel="stylesheet" href="/css/asciidoctor.css">
+  <link rel="stylesheet" href="/css/journal.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="allsunday">
+
+</head>
+
+<body>
+  <div class="container">
+
+    <nav class="site-nav">
+      <a href="http://blog.allsunday.io/">Index</a>
+    </nav>
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">使用hugo&#43;asciidoctor在GitHub搭建博客</h1>
+      <time class="post-date" datetime="2020-04-11 18:32:51 &#43;0800">11 Apr 2020</time>
+    </header>
+
+    <div class="sect1">
+<h2 id="_为什么要使用_hugo_asciidoctor_这样的组合">为什么要使用 hugo + asciidoctor 这样的组合</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://gohugo.io/">hugo</a> 对自己的介绍是 <strong>The world’s fastest framework for building websites</strong>。
+GitHub 有非常多的项目主页和个人博客都是用 hugo 生成的。hugo 相对于同类竞品比如 jekyll 最大的优势是 <strong>快</strong>。</p>
+</div>
+<div class="paragraph">
+<p>hugo 最常见的搭配是 Markdown。Markdown 差不多也是最通用的标记语言（不包括 HTML）。Markdown 使用范围比较广的有 2 个规范，
+CommonMark 和 GFM（GitHub Flavored Markdown）。使用最广泛的标记有如下几种</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-markdown" data-lang="markdown">一级标题
+=======
+
+## 二级标题
+
+段落以空白行分隔。
+
+行末两个空格  产生换行。
+
+文本属性：_斜体_、
+**粗体**、`等款字体Monospace`。
+
+水平线：
+
+---
+
+列表：
+
+  * 张三
+  * 李四
+  * 王二
+
+编号列表：
+
+  1. 不论
+  2. 三七
+  3. 二十一
+
+[链接](http://example.com)
+
+![图片](Icon-pictures.png "icon")
+
+&gt; Markdown使用「&gt;」來引用。
+
+
+```
+代码片段，GFM
+```
+
+~~删除线 GFM~~
+
+[] 任务列表1 GFM
+[] 任务列表2 GFM
+[x] 已完成的任务列表 GFM</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>这几种标记看起来非常简单，但是在实际使用的时候，往往不遂人意。</p>
+</div>
+<div class="paragraph">
+<p>比如希望在嵌套编号列表中插入多个段落，实现如下的排版：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>编号 1</p>
+<div class="listingblock">
+<div class="content">
+<pre>代码片段</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>编号 1 段落 2</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>嵌套列表 1.1</p>
+<div class="listingblock">
+<div class="content">
+<pre>嵌套列表代码片段</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>编号 1.1 段落 2</p>
+</div>
+</li>
+<li>
+<p>嵌套列表 1.2</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>编号 2</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>用 Markdown 往往需要调试非常多次，而且不同的编辑器最终排版还会有不一样的表现。</p>
+</div>
+<div class="paragraph">
+<p>日常的写作中，往往需要插入丰富的内容，比如插入表格，视频，公式，下标、上标等。Markdown 除了内嵌 HTML 代码并没有提供其他扩展的能力。
+这就导致了每个人用 Markdown 写文档的时候，或多或少需要使用 HTML 标记。</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="http://media.w3.org/2010/05/sintel/trailer.mp4" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">插入视频</div>
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;video id="video" controls="" preload="none" poster="http://media.w3.org/2010/05/sintel/poster.png"&gt;
+  &lt;source id="mp4" src="http://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4"&gt;
+  &lt;source id="webm" src="http://media.w3.org/2010/05/sintel/trailer.webm" type="video/webm"&gt;
+  &lt;source id="ogv" src="http://media.w3.org/2010/05/sintel/trailer.ogv" type="video/ogg"&gt;
+  &lt;p&gt;Your user agent does not support the HTML5 Video element.&lt;/p&gt;
+&lt;/video&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Markdown 本来定位是标记语言，并不与浏览器绑定，但是一旦使用 HTML，就意味着只能在浏览器里面渲染。而且由于不同的 Markdown 编辑器、渲染程序
+实现功能不一样，同一份 Markdown 文档，在不同的平台使用，都需要人工做一些修改。</p>
+</div>
+<div class="paragraph">
+<p>Asciidoctor 在 Markdown 的基础上，重新设计了一套根据完善的标记语言，很好地解决了 Markdown 遇到的问题。这篇文章就是用 Asciidoctor 写的。
+具体的格式可以参考 <a href="https://asciidoctor.org/">Asciidoctor 官网</a>。</p>
+</div>
+<div class="paragraph">
+<p>只需安装好 asciidoctor 命令，hugo 就可以支持用 Asciidoctor 格式写文档。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_如何自动部署_github_pages">如何自动部署 Github Pages</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>本地写文章的时候直接一行命令启动 hugo，就可以在浏览器预览文章。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>hugo server</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>我们想实现：写完文章后只需要 push 到 GitHub，后面生成文章的过程全部自动化。</p>
+</div>
+<div class="paragraph">
+<p>现在 GitHub 主流的自动化方式是使用 Github Actions。Repo 收到 push 事件后，触发 GitHub Action。由 GitHub Action 调用 hugo 生成
+整个静态网站，然后将生成的所有静态文件提交到 GitHub Pages。</p>
+</div>
+<div class="paragraph">
+<p>目前 GitHub Pages 有多种机制：</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="/images/post/github-source-choose-dialog.png" alt="pages-source-choose"></span></p>
+</div>
+<div class="paragraph">
+<p>博客的 repo 名称为 <code>gfreezy.github.io</code>，属于 <code>User Pages</code>，只支持通过 master 的根目录访问。所以 hugo 生成的文件需要放在 repo 的
+根目录。这样一来生成的文件和 hugo 原始的代码文件都混合在 repo 的目录，非常不利于长期维护。既然生成的文件位置没法修改，那我们就把 hugo
+代码放在子目录 <code>hugo</code> 里面，根目录只放生成的文件。</p>
+</div>
+<div class="paragraph">
+<p>这引入了一个新的问题：GitHub Action Market 里面的 hugo action 都只支持在 repo 根目录运行。找了一圈没有合适的，我们只能自己来写
+action。</p>
+</div>
+<div class="listingblock">
+<div class="title">workflow.yml</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">name: github pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true  # Fetch Hugo themes
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - uses: actions/setup-ruby@v1  # <b class="conum">(1)</b>
+
+      - name: Publish Site
+        run: make  # <b class="conum">(2)</b>
+
+      - name: Deploy
+        uses: stefanzweifel/git-auto-commit-action@v4.1.2  #<b class="conum">(3)</b>
+        with:
+          commit_message: hugo publish</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>asciidoctor 需要使用 gem 安装。需要准备好 ruby 环境</p>
+</li>
+<li>
+<p>生成网站</p>
+</li>
+<li>
+<p>将新生成的代码 commit，并 push 到 master</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="title">Makefile</div>
+<div class="content">
+<pre class="highlight"><code class="language-makefile" data-lang="makefile">HUGO_VERSION:="0.69.0"
+ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+BIN:="$(ROOT_DIR)/.bin"
+ifeq ($(shell uname), Darwin)     # <b class="conum">(1)</b>
+	OS:="macOS"
+else
+	OS:="Linux"
+endif
+
+.PHONY: build    # <b class="conum">(2)</b>
+
+build: clean install   # <b class="conum">(3)</b>
+	cd $(ROOT_DIR)/hugo &amp;&amp; $(BIN)/hugo
+	mv $(ROOT_DIR)/hugo/public/* $(ROOT_DIR)/
+
+install: .bin/hugo
+
+.bin/hugo:   # <b class="conum">(4)</b>
+	# install asciidoctor
+	[ $(OS) == "macOS" ] &amp;&amp; brew install asciidoctor || gem install asciidoctor
+
+	# install hugo
+	mkdir -p ".bin"
+	[ -f hugo_extended_$(HUGO_VERSION)_$(OS)-64bit.tar.gz ] || wget https://github.com/gohugoio/hugo/releases/download/v$(HUGO_VERSION)/hugo_extended_$(HUGO_VERSION)_$(OS)-64bit.tar.gz
+	tar -C .bin -xzvf hugo_extended_$(HUGO_VERSION)_$(OS)-64bit.tar.gz
+	rm -rf hugo_extended_$(HUGO_VERSION)_$(OS)-64bit.tar.gz
+
+clean:   # <b class="conum">(4)</b>
+	ls $(ROOT_DIR) | grep -v -E '^(CNAME|Makefile|hugo|README.md)$$' | xargs rm -rf || true
+	rm -rf $(ROOT_DIR)/hugo/public/</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>判断 macos 和 linux</p>
+</li>
+<li>
+<p>默认执行 build</p>
+</li>
+<li>
+<p>每次 build 前，先执行 clean。避免无效的文件影响显示效果</p>
+</li>
+<li>
+<p>将所有生成的文件全部删除</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_完成">完成</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>之后写博客，只需要新建一个 asciidoctor 文档，写完后提交并 push master，后续全部都自动化。
+GitHub 是支持预览 asciidoctor 文档的，所以我们甚至可以直接在 GitHub 上在线创建和编辑。</p>
+</div>
+</div>
+</div>
+
+
+  </article>
+
+
+      <footer class="site-footer">
+        <span itemscope itemtype="http://schema.org/Person">
+          <link itemprop="url" href="http://blog.allsunday.io/">
+          <span itemprop="name"></span>
+
+          <br>
+
+          <a itemprop="sameAs" href="https://github.com/gfreezy" title="GitHub">Github</a>
+
+          
+
+          
+        </span>
+
+        
+      </footer>
+    </div>
+
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  </body>
+</html>
+

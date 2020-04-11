@@ -6,10 +6,19 @@
     <description>Recent content on allsunday</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Nov 2014 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 11 Apr 2020 18:32:51 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.allsunday.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用hugo&#43;asciidoctor在GitHub搭建博客</title>
+      <link>http://blog.allsunday.io/post/2020-04-11-%E4%BD%BF%E7%94%A8hugo&#43;asciidoctor%E5%9C%A8github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Sat, 11 Apr 2020 18:32:51 +0800</pubDate>
+      
+      <guid>http://blog.allsunday.io/post/2020-04-11-%E4%BD%BF%E7%94%A8hugo&#43;asciidoctor%E5%9C%A8github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <description>为什么要使用 hugo + asciidoctor 这样的组合 hugo 对自己的介绍是 The world’s fastest framework for building websites。 GitHub 有非常多的项目主页和个人博客都是用 hugo 生成的。hugo</description>
+    </item>
     
     <item>
       <title>Python 多继承下 metaclass 优先级</title>

@@ -22,5 +22,5 @@ install: .bin/hugo
 	rm -rf hugo_extended_$(HUGO_VERSION)_$(OS)-64bit.tar.gz
 
 clean:
-	ls $(ROOT_DIR) | grep -v -E '^(CNAME|Makefile|hugo)$$' | xargs rm -rf || true
+	ls $(ROOT_DIR) | grep -v -E '^(CNAME|Makefile|hugo|README.md)$$' | xargs rm -rf || true
 	rm -rf $(ROOT_DIR)/hugo/public/

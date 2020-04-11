@@ -90,7 +90,7 @@ CommonMark 和 GFM（GitHub Flavored Markdown）。使用最广泛的标记有�
 日常的写作中，往往需要插入丰富的内容，比如插入表格，视频，公式，下标、上标等。Markdown 除了内嵌 HTML 代码并没有提供其他扩展的能力。
 这就导致了每个人用 Markdown 写文档的时候，或多或少需要使用 HTML 标记。
 
-video::http://media.w3.org/2010/05/sintel/trailer.mp4[]
+video::http://media.w3.org/2010/05/sintel/trailer.mp4[width=300]
 
 .插入视频
 [source,html]

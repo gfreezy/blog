@@ -6,6 +6,7 @@
 
 body {
     font-family: sans-serif;
+    font-weight: 300;
 }
 
 a {
@@ -29,9 +30,31 @@ a:hover {
     }
 }
 
-.site-header,
-.site-nav {
+.site-header {
     margin-bottom: 2rem;
+}
+
+.site-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.site-nav .site-title {
+    font-size: 1.8em;
+}
+
+.site-nav h1.site-title {
+    font-size: 3em;
+}
+
+.site-nav .sub-navs {
+    font-size: 1.8em;
+}
+
+.site-nav a {
+    text-decoration: none;
 }
 
 .site-header h1,
@@ -40,9 +63,9 @@ a:hover {
     margin-top: .5em;
 }
 
-.site-nav a::before {
-    content: '\2190';
-    margin-right: .25rem;
+.sub-navs::before {
+    /*content: '\2190';*/
+    /*margin-right: .25rem;*/
 }
 
 .site-footer {
@@ -58,6 +81,21 @@ a:hover {
     .site-footer {
         margin-bottom: .5rem;
     }
+}
+
+.tags ol {
+    margin-left: 0;
+    list-style: none;
+    display: block;
+    overflow: hidden;
+    font-size: 24px;
+}
+
+.tags li {
+    display: inline-block;
+    float: left;
+    margin-bottom: .5rem;
+    margin-right: .5rem;
 }
 
 .posts {

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+
+<head>
+    <meta charset="utf-8">
+    {{ hugo.Generator }}
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="{{ .Site.Author.name }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+
+    {{ range .AlternativeOutputFormats -}}
+        {{ printf `<link rel="%s" type="%s" href="%s" title="%s-%s" />` .Rel .MediaType.Type .Permalink $.Site.Title .MediaType.Type | safeHTML }}
+    {{ end -}}
+
+    {{ if .IsHome -}}
+        <title>{{ .Site.Title }}</title>
+        <meta property="og:title" content="{{ .Site.Title }}">
+        <meta property="og:type" content="website">
+        <meta name="description" content="{{ .Site.Params.description }}">
+    {{- else -}}
+        <title>{{ .Title }} - {{ .Site.Title }}</title>
+        <meta property="og:title" content="{{ .Title }} - {{ .Site.Title }}">
+        <meta property="og:type" content="article">
+        <meta name="description" content="{{ .Description }}">
+    {{- end }}
+
+    <link rel="stylesheet" href="{{ "css/highlight.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/asciidoctor.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/journal.css" | relURL }}">
+    <link href="{{ "index.xml" | relURL }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}">
+
+</head>
+
+<body>
+<div class="container">
+    {{ block "nav" . }}
+        <header class="site-header">
+            <div class="site-nav">
+                <h1 class="site-title">
+                    <a href="/">{{ .Site.Title }}</a>
+                </h1>
+                <span class="sub-navs">
+                    <a href="/tags">tags</a>
+                    <a href="/index.xml" target="_blank">rss</a>
+                </span>
+            </div>
+            {{ if .IsHome}}
+                <p>{{ .Site.Params.tagline }}</p>
+            {{ end }}
+        </header>
+    {{ end }}
+
+    {{ block "main" . }}
+        <!-- More shared code, perhaps a footer but that can be overridden if need be in  -->
+    {{ end }}
+
+    <footer class="site-footer">
+        {{ partial "bottom.html" . }}
+        <!-- {{ hugo.BuildDate }} -->
+    </footer>
+</div>
+
+<script src="{{ "js/highlight.pack.js" | relURL }}"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

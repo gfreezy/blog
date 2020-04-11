@@ -1,0 +1,21 @@
+{{ define "main" }}
+<article class="posts">
+    <section>
+        <header>
+            <h1>{{.Title}}</h1>
+        </header>
+        <!-- "{{.Content}}" pulls from the markdown content of the corresponding _index.md -->
+        {{.Content}}
+
+        <ol>
+            {{ range .Pages -}}
+            <li>
+                <time datetime="{{ .Date.Format " 2006-01-02 15:04:05 MST" }}">{{ .Date.Format "Jan 02"}}</time>
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </li>
+            {{- end }}
+        </ol>
+    </section>
+</article>
+
+{{ end }}

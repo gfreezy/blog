@@ -1,0 +1,22 @@
+name: Website Generator
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout source to workplace
+        uses: actions/checkout@v2
+
+      - name: Build the website to public directory
+        uses: gaol/hugo-gh-action@v1.2
+
+      - name: Deploy the generated website from public sub directory to master branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: master

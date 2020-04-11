@@ -13,10 +13,10 @@
     
     <item>
       <title>IPTABLES INPUT 和 PREROUTING 的区别</title>
-      <link>http://blog.allsunday.io/post/2014-05-27-iptables-input%E5%92%8Cprerouting%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
+      <link>http://blog.allsunday.io/posts/2014-05-27-iptables-input%E5%92%8Cprerouting%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
       <pubDate>Tue, 27 May 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2014-05-27-iptables-input%E5%92%8Cprerouting%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
+      <guid>http://blog.allsunday.io/posts/2014-05-27-iptables-input%E5%92%8Cprerouting%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
       <description>之前一直以为 iptables 的 input 链是用来判断是否允许 ip 包进入（不管这个 ip 包的目标地址是不是本机）， prerouting 链是用来做 ip 包转发的。
  我们之前的架构是网管机器 maize 通过 iptables 把 80 端口的 ip 包全部转发到内网 carrot[1] 机器的 nginx 上面。有一阵爬虫特别多， 我们就把他们在 nginx 里面直接对这些 爬虫的 ip deny了。但是经过 deny 了，这些爬虫的还是会进 nginx 的日志，影响到正常的监控。 于是我们就想干脆直接在网关的 iptables 那边 drop 掉，这样 nginx 日志也能干净不少。说干就干
  iptables -A INPUT -s xx.xx.xx.xx/24 -j DROP   并把 nginx 里面的 deny 配置给删掉了，我们本以为这样整个世界就清净了。但是流量监控显示，爬虫的流量不但没有下降，反而反弹到之前的量了。 直接查看 nginx 的日志，发现这些本应该被屏蔽的 ip ，竟然都在正常爬取内容。小伙伴们都惊呆了。
@@ -25,10 +25,10 @@
     
     <item>
       <title>Linux 磁盘性能测试工具</title>
-      <link>http://blog.allsunday.io/post/2014-05-27-linux%E7%A3%81%E7%9B%98%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/</link>
+      <link>http://blog.allsunday.io/posts/2014-05-27-linux%E7%A3%81%E7%9B%98%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/</link>
       <pubDate>Tue, 27 May 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2014-05-27-linux%E7%A3%81%E7%9B%98%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/</guid>
+      <guid>http://blog.allsunday.io/posts/2014-05-27-linux%E7%A3%81%E7%9B%98%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/</guid>
       <description>公司的 MySQL io性能遇到了瓶颈， MySQL 层面的优化基本已经都做完了， 而应用层面的优化又会过于繁琐与复杂。 于是我们最初的结论是最简单的方法就是上 SSD。后来询问了豆瓣flex关于SSD的经验， 发现SSD还不是那么成熟，出现问题的情况还是比较多，而我们又没有这方面的经验， 所以就把SSD这个方案给搁置了。
  豆瓣flex给出豆瓣这方面的经验是：用15000转的硬盘做RAID 10。使用RAID卡的 缓存以后，性能相对于直接使用硬盘有极大的提升。而且RAID的技术已经非常的成熟，这个方案看起来是比较靠谱的。
  我们的机器是 R710，默认自带的RAID卡性能非常弱，只能做 RAID 0或 RAID 1。flex推荐的是 H700，因为 R710 的背板线与 H700不兼容，所以连线也要一起换掉。
@@ -40,10 +40,10 @@
     
     <item>
       <title>moosefs 新部署 chunkserver</title>
-      <link>http://blog.allsunday.io/post/2014-05-12-moosefs%E6%96%B0%E9%83%A8%E7%BD%B2chunkserver/</link>
+      <link>http://blog.allsunday.io/posts/2014-05-12-moosefs%E6%96%B0%E9%83%A8%E7%BD%B2chunkserver/</link>
       <pubDate>Mon, 12 May 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2014-05-12-moosefs%E6%96%B0%E9%83%A8%E7%BD%B2chunkserver/</guid>
+      <guid>http://blog.allsunday.io/posts/2014-05-12-moosefs%E6%96%B0%E9%83%A8%E7%BD%B2chunkserver/</guid>
       <description>在 /etc/apt/source.lst 里面加入
 deb http://apt-repo:3143/ /     运行一下命令来安装 moosefs 相关的包
 apt-get update apt-get install moosefs-chunkserver moosefs-client moosefs-master     修改配置文件
@@ -55,10 +55,10 @@ wget https://gist.githubusercontent.com/gfreezy/f1dc2ee1620b2cbe970f/raw/65dce19
     
     <item>
       <title>制作 Moosefs debian 安装包</title>
-      <link>http://blog.allsunday.io/post/2013-07-17-%E5%88%B6%E4%BD%9Cmoosefs-debian%E5%AE%89%E8%A3%85%E5%8C%85/</link>
+      <link>http://blog.allsunday.io/posts/2013-07-17-%E5%88%B6%E4%BD%9Cmoosefs-debian%E5%AE%89%E8%A3%85%E5%8C%85/</link>
       <pubDate>Wed, 17 Jul 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2013-07-17-%E5%88%B6%E4%BD%9Cmoosefs-debian%E5%AE%89%E8%A3%85%E5%8C%85/</guid>
+      <guid>http://blog.allsunday.io/posts/2013-07-17-%E5%88%B6%E4%BD%9Cmoosefs-debian%E5%AE%89%E8%A3%85%E5%8C%85/</guid>
       <description>Moosefs一共可以分为 master, chunkserver, client 三个应用程序，需要分别制作3个debian安装包。
    准备工作  确保 fuse 已经安装
   安装 checkinstall
@@ -71,10 +71,10 @@ tar xvzf mfs-1.6.27.tar.gz cd mfs-1.6.27        制作 Master 安装包  配置
     
     <item>
       <title>MySQL replica</title>
-      <link>http://blog.allsunday.io/post/2012-10-23-mysql-replica/</link>
+      <link>http://blog.allsunday.io/posts/2012-10-23-mysql-replica/</link>
       <pubDate>Fri, 30 Nov 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2012-10-23-mysql-replica/</guid>
+      <guid>http://blog.allsunday.io/posts/2012-10-23-mysql-replica/</guid>
       <description>&lt;p&gt;昨天终于把拖了很久的MySQL replica给做了。一共有两台服务器，一台是MySQL master，hostname是fig，还有一台是即将作为slave的，hostname为pistachio。两台机器装有相同版本的MySQL。&lt;/p&gt;
 &lt;h2 id=&#34;基本步骤&#34;&gt;基本步骤&lt;/h2&gt;
 &lt;ol&gt;
@@ -96,10 +96,10 @@ tar xvzf mfs-1.6.27.tar.gz cd mfs-1.6.27        制作 Master 安装包  配置
     
     <item>
       <title>apt-get 回滚 testing 到某一天的状态</title>
-      <link>http://blog.allsunday.io/post/2012-10-17-apt-get%E5%9B%9E%E6%BB%9Atesting%E5%88%B0%E6%9F%90%E4%B8%80%E5%A4%A9%E7%9A%84%E7%8A%B6%E6%80%81/</link>
+      <link>http://blog.allsunday.io/posts/2012-10-17-apt-get%E5%9B%9E%E6%BB%9Atesting%E5%88%B0%E6%9F%90%E4%B8%80%E5%A4%A9%E7%9A%84%E7%8A%B6%E6%80%81/</link>
       <pubDate>Wed, 17 Oct 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2012-10-17-apt-get%E5%9B%9E%E6%BB%9Atesting%E5%88%B0%E6%9F%90%E4%B8%80%E5%A4%A9%E7%9A%84%E7%8A%B6%E6%80%81/</guid>
+      <guid>http://blog.allsunday.io/posts/2012-10-17-apt-get%E5%9B%9E%E6%BB%9Atesting%E5%88%B0%E6%9F%90%E4%B8%80%E5%A4%A9%E7%9A%84%E7%8A%B6%E6%80%81/</guid>
       <description>&lt;p&gt;公司的服务器用的是Debian的testing版本，上面的MySQL是在3月份装的，是5.1的版本。因为最近要给MySQL加一个cluster，所以需要在新的虚拟机C上安装MySQL环境。&lt;/p&gt;
 &lt;p&gt;服务器某台A虚拟机安装了apt-cache-ng，所有其余的机器的apt源都指向这台机器。由于我的手欠，在A上面执行了&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;apt-get update
@@ -114,10 +114,10 @@ tar xvzf mfs-1.6.27.tar.gz cd mfs-1.6.27        制作 Master 安装包  配置
     
     <item>
       <title>Linux下用proxychains给所有的程序用上代理</title>
-      <link>http://blog.allsunday.io/post/2011-11-24-linuxxia-yong-proxychainsgei-suo-you-de-cheng-xu-yong-shang-dai-li/</link>
+      <link>http://blog.allsunday.io/posts/2011-11-24-linuxxia-yong-proxychainsgei-suo-you-de-cheng-xu-yong-shang-dai-li/</link>
       <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2011-11-24-linuxxia-yong-proxychainsgei-suo-you-de-cheng-xu-yong-shang-dai-li/</guid>
+      <guid>http://blog.allsunday.io/posts/2011-11-24-linuxxia-yong-proxychainsgei-suo-you-de-cheng-xu-yong-shang-dai-li/</guid>
       <description>Archlinux 下，只需要yaourt -S proxychains就能安装完毕，然后编辑/etc/proxychains.conf，修改proxy的地址为127.0.0.1，端口为7070。
 然后在本地开启ssh代理，ssh -CfNg -D 127.0.0.1:7070 gfreezy@norida.me。一切的准备工作就完成了。
 以后所有需要通过ssh代理来访问网络的程序，只要在命令前面加proxychains就可以了。如访问twitter，只需proxychains wget twitter.com就能获得twitter的首页了。</description>

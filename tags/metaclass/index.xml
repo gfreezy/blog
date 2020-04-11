@@ -13,10 +13,10 @@
     
     <item>
       <title>Python 多继承下 metaclass 优先级</title>
-      <link>http://blog.allsunday.io/post/2014-11-09-python-mutiple-metaclass/</link>
+      <link>http://blog.allsunday.io/posts/2014-11-09-python-mutiple-metaclass/</link>
       <pubDate>Sun, 09 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2014-11-09-python-mutiple-metaclass/</guid>
+      <guid>http://blog.allsunday.io/posts/2014-11-09-python-mutiple-metaclass/</guid>
       <description>在 Python 里面，class 也是一个对象，它是 type 实例化后生成的对象。 我们一般用如下的代码来定义一个类。
  class ClassA(object): def method1(self): pass @classmethod def method2(cls): pass   实际上 class 这个关键字是类似语法糖一样的东西。 上面的 class 定义等价为
  def method1(self): pass @classmethod def method2(cls): pass attrs = { &#39;method1&#39;: method1, &#39;method2&#39;: method2, } ClassA = type(&#39;ClassA&#39;, (object,), attrs)   type 的三个参数分别为：

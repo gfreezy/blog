@@ -13,10 +13,10 @@
     
     <item>
       <title>css和jquery里面的height属性</title>
-      <link>http://blog.allsunday.io/post/2011-10-23-height-in-css-and-jquery/</link>
+      <link>http://blog.allsunday.io/posts/2011-10-23-height-in-css-and-jquery/</link>
       <pubDate>Sun, 23 Oct 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2011-10-23-height-in-css-and-jquery/</guid>
+      <guid>http://blog.allsunday.io/posts/2011-10-23-height-in-css-and-jquery/</guid>
       <description> 获取浏览器窗口的可见高度用 document.body.clientHeight 获取当前网页的高度用 document.height  height %100是相对于父元素的高度来设置的。
 jquery获取height属性的几个方法
  $(&#39;&#39;).height() 只获取元素的大小，不包括padding，border，margin $(&#39;&#39;).innerHeight() 包括padding $(&#39;&#39;).outerHeight() 包括padding和border $(&#39;&#39;).outerHeight(true) 包括padding，border，margin  </description>

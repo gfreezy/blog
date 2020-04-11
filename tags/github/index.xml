@@ -13,10 +13,10 @@
     
     <item>
       <title>Github整合Pull Request和Issue</title>
-      <link>http://blog.allsunday.io/post/2011-11-24-githubzheng-he-pull-requesthe-issue/</link>
+      <link>http://blog.allsunday.io/posts/2011-11-24-githubzheng-he-pull-requesthe-issue/</link>
       <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2011-11-24-githubzheng-he-pull-requesthe-issue/</guid>
+      <guid>http://blog.allsunday.io/posts/2011-11-24-githubzheng-he-pull-requesthe-issue/</guid>
       <description>我们把Github的Issue功能用来做计划，每次一个新功能完成，都会提交一个Pull Request。 提交一个Pull Request会自动新建一个Issue，但是原来已经存在一个Issue了，这样就有2 个相同内容的Issue。今天Google了下，发现只要的提交Pull Request的时候，在Commit信息 里面加入
 close, closes, closed, fixes, fixed  这些关键词，比如 &amp;ldquo;this commit fixes #116&amp;rdquo;，Github会自动关联Issue和Pull Request。</description>
     </item>

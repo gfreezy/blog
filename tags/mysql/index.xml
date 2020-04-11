@@ -13,10 +13,10 @@
     
     <item>
       <title>MySQL 性能问题排查</title>
-      <link>http://blog.allsunday.io/post/2014-04-17-mysql%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</link>
+      <link>http://blog.allsunday.io/posts/2014-04-17-mysql%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</link>
       <pubDate>Thu, 17 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2014-04-17-mysql%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</guid>
+      <guid>http://blog.allsunday.io/posts/2014-04-17-mysql%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</guid>
       <description>一月份上线了一个新的APP版本后导致MySQL的性能急剧下降。机器的io近几天基本一直都是 100% 状态，于是开始调MySQL的性能。
    慢日志 首先查看的时慢日志。因为近几天io都是100%，每秒的慢日志已经到了几十的量级，由于io的下降，导致很多原本不应该慢的查询也都在慢查询日志里面。肉眼已经很难看了。 这时，就要使用percona的工具，pt-query-digest了。
  pt-query-digest /var/log/mysql/mysql-slow.log | vim -   分析结果会在vim里面打开。pt-query-digest会根据查询花费的时间排序，按照顺序往下看，一个一个的看，是不是该建的索引没建，或者建的不合适，导致 查询没用上索引。
@@ -28,10 +28,10 @@
     
     <item>
       <title>MySQL replica</title>
-      <link>http://blog.allsunday.io/post/2012-10-23-mysql-replica/</link>
+      <link>http://blog.allsunday.io/posts/2012-10-23-mysql-replica/</link>
       <pubDate>Fri, 30 Nov 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2012-10-23-mysql-replica/</guid>
+      <guid>http://blog.allsunday.io/posts/2012-10-23-mysql-replica/</guid>
       <description>&lt;p&gt;昨天终于把拖了很久的MySQL replica给做了。一共有两台服务器，一台是MySQL master，hostname是fig，还有一台是即将作为slave的，hostname为pistachio。两台机器装有相同版本的MySQL。&lt;/p&gt;
 &lt;h2 id=&#34;基本步骤&#34;&gt;基本步骤&lt;/h2&gt;
 &lt;ol&gt;
@@ -53,10 +53,10 @@
     
     <item>
       <title>debian安装mysql-python模块</title>
-      <link>http://blog.allsunday.io/post/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</link>
+      <link>http://blog.allsunday.io/posts/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</link>
       <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</guid>
+      <guid>http://blog.allsunday.io/posts/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</guid>
       <description>直接 pip install mysql-python 提示 mysql-config 未找到，google了下，发现要先安装libmysql++-dev。
 apt-get install limysql++-dev pip install mysql-python  安装完成，可以在python中用mysql了。</description>
     </item>

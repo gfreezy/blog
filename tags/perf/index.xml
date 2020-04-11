@@ -13,10 +13,10 @@
     
     <item>
       <title>MySQL 性能问题排查</title>
-      <link>http://blog.allsunday.io/post/2014-04-17-mysql%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</link>
+      <link>http://blog.allsunday.io/posts/2014-04-17-mysql%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</link>
       <pubDate>Thu, 17 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2014-04-17-mysql%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</guid>
+      <guid>http://blog.allsunday.io/posts/2014-04-17-mysql%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</guid>
       <description>一月份上线了一个新的APP版本后导致MySQL的性能急剧下降。机器的io近几天基本一直都是 100% 状态，于是开始调MySQL的性能。
    慢日志 首先查看的时慢日志。因为近几天io都是100%，每秒的慢日志已经到了几十的量级，由于io的下降，导致很多原本不应该慢的查询也都在慢查询日志里面。肉眼已经很难看了。 这时，就要使用percona的工具，pt-query-digest了。
  pt-query-digest /var/log/mysql/mysql-slow.log | vim -   分析结果会在vim里面打开。pt-query-digest会根据查询花费的时间排序，按照顺序往下看，一个一个的看，是不是该建的索引没建，或者建的不合适，导致 查询没用上索引。

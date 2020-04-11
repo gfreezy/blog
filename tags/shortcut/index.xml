@@ -13,10 +13,10 @@
     
     <item>
       <title>Emacs笔记</title>
-      <link>http://blog.allsunday.io/post/2011-11-24-emacsbi-ji/</link>
+      <link>http://blog.allsunday.io/posts/2011-11-24-emacsbi-ji/</link>
       <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2011-11-24-emacsbi-ji/</guid>
+      <guid>http://blog.allsunday.io/posts/2011-11-24-emacsbi-ji/</guid>
       <description>&lt;h2 id=&#34;buffer操作&#34;&gt;Buffer操作&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;在新buffer打开文件 C-x C-f&lt;/li&gt;

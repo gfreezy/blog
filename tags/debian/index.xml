@@ -13,19 +13,19 @@
     
     <item>
       <title>debian6上nginx与uwsgi安装</title>
-      <link>http://blog.allsunday.io/post/2011-11-24-debian6shang-nginxyu-uwsgian-zhuang/</link>
+      <link>http://blog.allsunday.io/posts/2011-11-24-debian6shang-nginxyu-uwsgian-zhuang/</link>
       <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2011-11-24-debian6shang-nginxyu-uwsgian-zhuang/</guid>
+      <guid>http://blog.allsunday.io/posts/2011-11-24-debian6shang-nginxyu-uwsgian-zhuang/</guid>
       <description>见linode的文档</description>
     </item>
     
     <item>
       <title>debian安装mysql-python模块</title>
-      <link>http://blog.allsunday.io/post/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</link>
+      <link>http://blog.allsunday.io/posts/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</link>
       <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</guid>
+      <guid>http://blog.allsunday.io/posts/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</guid>
       <description>直接 pip install mysql-python 提示 mysql-config 未找到，google了下，发现要先安装libmysql++-dev。
 apt-get install limysql++-dev pip install mysql-python  安装完成，可以在python中用mysql了。</description>
     </item>

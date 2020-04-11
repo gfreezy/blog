@@ -13,10 +13,10 @@
     
     <item>
       <title>IPTABLES INPUT 和 PREROUTING 的区别</title>
-      <link>http://blog.allsunday.io/post/2014-05-27-iptables-input%E5%92%8Cprerouting%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
+      <link>http://blog.allsunday.io/posts/2014-05-27-iptables-input%E5%92%8Cprerouting%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
       <pubDate>Tue, 27 May 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2014-05-27-iptables-input%E5%92%8Cprerouting%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
+      <guid>http://blog.allsunday.io/posts/2014-05-27-iptables-input%E5%92%8Cprerouting%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
       <description>之前一直以为 iptables 的 input 链是用来判断是否允许 ip 包进入（不管这个 ip 包的目标地址是不是本机）， prerouting 链是用来做 ip 包转发的。
  我们之前的架构是网管机器 maize 通过 iptables 把 80 端口的 ip 包全部转发到内网 carrot[1] 机器的 nginx 上面。有一阵爬虫特别多， 我们就把他们在 nginx 里面直接对这些 爬虫的 ip deny了。但是经过 deny 了，这些爬虫的还是会进 nginx 的日志，影响到正常的监控。 于是我们就想干脆直接在网关的 iptables 那边 drop 掉，这样 nginx 日志也能干净不少。说干就干
  iptables -A INPUT -s xx.xx.xx.xx/24 -j DROP   并把 nginx 里面的 deny 配置给删掉了，我们本以为这样整个世界就清净了。但是流量监控显示，爬虫的流量不但没有下降，反而反弹到之前的量了。 直接查看 nginx 的日志，发现这些本应该被屏蔽的 ip ，竟然都在正常爬取内容。小伙伴们都惊呆了。

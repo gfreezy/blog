@@ -13,10 +13,10 @@
     
     <item>
       <title>nginx location and proxy_pass</title>
-      <link>http://blog.allsunday.io/post/2012-09-12-nginx-location-and-proxy-pass/</link>
+      <link>http://blog.allsunday.io/posts/2012-09-12-nginx-location-and-proxy-pass/</link>
       <pubDate>Wed, 12 Sep 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2012-09-12-nginx-location-and-proxy-pass/</guid>
+      <guid>http://blog.allsunday.io/posts/2012-09-12-nginx-location-and-proxy-pass/</guid>
       <description>&lt;p&gt;&lt;em&gt;Nginx&lt;/em&gt;的&lt;em&gt;location&lt;/em&gt;的格式为&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;location [=|~|~*|^~] uri { … }
 &lt;/code&gt;&lt;/pre&gt;

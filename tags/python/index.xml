@@ -13,10 +13,10 @@
     
     <item>
       <title>Python 多继承下 metaclass 优先级</title>
-      <link>http://blog.allsunday.io/post/2014-11-09-python-mutiple-metaclass/</link>
+      <link>http://blog.allsunday.io/posts/2014-11-09-python-mutiple-metaclass/</link>
       <pubDate>Sun, 09 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2014-11-09-python-mutiple-metaclass/</guid>
+      <guid>http://blog.allsunday.io/posts/2014-11-09-python-mutiple-metaclass/</guid>
       <description>在 Python 里面，class 也是一个对象，它是 type 实例化后生成的对象。 我们一般用如下的代码来定义一个类。
  class ClassA(object): def method1(self): pass @classmethod def method2(cls): pass   实际上 class 这个关键字是类似语法糖一样的东西。 上面的 class 定义等价为
  def method1(self): pass @classmethod def method2(cls): pass attrs = { &#39;method1&#39;: method1, &#39;method2&#39;: method2, } ClassA = type(&#39;ClassA&#39;, (object,), attrs)   type 的三个参数分别为：
@@ -28,20 +28,20 @@
     
     <item>
       <title>mako根据条件判断是否使用页面缓存</title>
-      <link>http://blog.allsunday.io/post/2014-02-19-cache-pages-for-anonymous-users-in-mako/</link>
+      <link>http://blog.allsunday.io/posts/2014-02-19-cache-pages-for-anonymous-users-in-mako/</link>
       <pubDate>Wed, 19 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2014-02-19-cache-pages-for-anonymous-users-in-mako/</guid>
+      <guid>http://blog.allsunday.io/posts/2014-02-19-cache-pages-for-anonymous-users-in-mako/</guid>
       <description>最近遇到网站速度慢的情况，排查许久没查出什么原因。于是想着匿名用户的访问量占据了一半多，如果这一部分的请求全部缓存下来，那么应该能够很大程度上提升网站的响应速度。 之前已经在一些页面里面使用了 Mako 的页面缓存，具体的文档可以查看 Mako 官网
  # CacheImepl的定义 class CMemcachedImpl(CacheImpl): def __init__(self, cache): from mysite.model.init_db import page_mc as mc super(CMemcachedImpl, self).__init__(cache) self.mc = mc def get_or_create(self, key, creation_function, **kw): value = self.mc.get(key) if not value: value = creation_function() timeout = kw.get(&#39;timeout&#39;, 60) try: timeout = int(timeout) except ValueError: timeout = 60 # 防止缓存雪崩，即大量待缓存在同一时刻失效 timeout = timeout + random.randint(0, timeout / 10) self.mc.set(key, value, timeout) return value def set(self, key, value, **kw): timeout = kw.</description>
     </item>
     
     <item>
       <title>scrapy could not parse some html page correctly</title>
-      <link>http://blog.allsunday.io/post/2012-09-06-scrapy-could-not-parse-some-html-page-correctly/</link>
+      <link>http://blog.allsunday.io/posts/2012-09-06-scrapy-could-not-parse-some-html-page-correctly/</link>
       <pubDate>Thu, 06 Sep 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2012-09-06-scrapy-could-not-parse-some-html-page-correctly/</guid>
+      <guid>http://blog.allsunday.io/posts/2012-09-06-scrapy-could-not-parse-some-html-page-correctly/</guid>
       <description>在用Scrapy爬取淘宝的搜索结果时，发现很多的页面通过XPathSelector转换后丢失了很多的数据，只留下了一小部分的页面。
 起初是以为淘宝用了JS来动态加载搜索结果，用Chrome Develop Tool禁用了JS，发现还是没有丢失页面数据。也查了下，没有使用跳转。然后用scrapy shell url来测试这个URL，hxs.extract()的结果要比response.body中的内容少了一个数量级。
 问题出在了lxml的处理上。淘宝的页面是使用GBK编码的，所以scrapy的encoding处理出了问题。Google之，终于在stackoverflow上面找到了一篇文章。按照它上面说的加上encoding处理后，问题解决了。
@@ -54,10 +54,10 @@ def parse(self, response):
     
     <item>
       <title>debian安装mysql-python模块</title>
-      <link>http://blog.allsunday.io/post/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</link>
+      <link>http://blog.allsunday.io/posts/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</link>
       <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</guid>
+      <guid>http://blog.allsunday.io/posts/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</guid>
       <description>直接 pip install mysql-python 提示 mysql-config 未找到，google了下，发现要先安装libmysql++-dev。
 apt-get install limysql++-dev pip install mysql-python  安装完成，可以在python中用mysql了。</description>
     </item>

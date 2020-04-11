@@ -13,10 +13,10 @@
     
     <item>
       <title>pyramid1.3使用mako模板</title>
-      <link>http://blog.allsunday.io/post/2012-03-28-pyramid1-dot-3shi-yong-makomo-ban/</link>
+      <link>http://blog.allsunday.io/posts/2012-03-28-pyramid1-dot-3shi-yong-makomo-ban/</link>
       <pubDate>Wed, 28 Mar 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2012-03-28-pyramid1-dot-3shi-yong-makomo-ban/</guid>
+      <guid>http://blog.allsunday.io/posts/2012-03-28-pyramid1-dot-3shi-yong-makomo-ban/</guid>
       <description>Pyramid的pt模板文件可以使用相对路径来查找，如下
 @view_config(route_name=&#39;home&#39;, renderer=templates/mytemplate.pt&#39;)  但是Pyramid的Mako模板不支持用相对路径，你必须使用绝对路径
 @view_config(route_name=&#39;home&#39;, renderer=&#39;translatform:templates/mytemplate.mako&#39;)  或者，可以在 productioin.ini 文件里面加入 mako.directory=translatform:/ ，这样就可以用相对路径来定位mako模板了。</description>
@@ -24,39 +24,39 @@
     
     <item>
       <title>Move wicd&#39;s icon to gnome-shell&#39;s status bar(top bar)</title>
-      <link>http://blog.allsunday.io/post/2011-12-05-move-wicds-icon-to-gnome-shells-status-bar-top-bar/</link>
+      <link>http://blog.allsunday.io/posts/2011-12-05-move-wicds-icon-to-gnome-shells-status-bar-top-bar/</link>
       <pubDate>Mon, 05 Dec 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2011-12-05-move-wicds-icon-to-gnome-shells-status-bar-top-bar/</guid>
+      <guid>http://blog.allsunday.io/posts/2011-12-05-move-wicds-icon-to-gnome-shells-status-bar-top-bar/</guid>
       <description>After I saw a extension of gnome-shell to move pidgin&amp;rsquo;s icon to the status bar, I tried to roll my own extension following the extension&amp;rsquo;s source to move the wicd&amp;rsquo;s icon to the status bar too. I followed the post Adding pidgin icon to gnome-shell status tray.
 All I did is just to change the name of pidgin to wicd. After reboot my gnome-shell, it worked. Wicd&amp;rsquo;s icon appeared in status bar(top bar).</description>
     </item>
     
     <item>
       <title>debian6上nginx与uwsgi安装</title>
-      <link>http://blog.allsunday.io/post/2011-11-24-debian6shang-nginxyu-uwsgian-zhuang/</link>
+      <link>http://blog.allsunday.io/posts/2011-11-24-debian6shang-nginxyu-uwsgian-zhuang/</link>
       <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2011-11-24-debian6shang-nginxyu-uwsgian-zhuang/</guid>
+      <guid>http://blog.allsunday.io/posts/2011-11-24-debian6shang-nginxyu-uwsgian-zhuang/</guid>
       <description>见linode的文档</description>
     </item>
     
     <item>
       <title>debian安装mysql-python模块</title>
-      <link>http://blog.allsunday.io/post/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</link>
+      <link>http://blog.allsunday.io/posts/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</link>
       <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</guid>
+      <guid>http://blog.allsunday.io/posts/2011-11-24-debianan-zhuang-mysql-pythonmo-kuai/</guid>
       <description>直接 pip install mysql-python 提示 mysql-config 未找到，google了下，发现要先安装libmysql++-dev。
 apt-get install limysql++-dev pip install mysql-python  安装完成，可以在python中用mysql了。</description>
     </item>
     
     <item>
       <title>Emacs笔记</title>
-      <link>http://blog.allsunday.io/post/2011-11-24-emacsbi-ji/</link>
+      <link>http://blog.allsunday.io/posts/2011-11-24-emacsbi-ji/</link>
       <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2011-11-24-emacsbi-ji/</guid>
+      <guid>http://blog.allsunday.io/posts/2011-11-24-emacsbi-ji/</guid>
       <description>&lt;h2 id=&#34;buffer操作&#34;&gt;Buffer操作&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;在新buffer打开文件 C-x C-f&lt;/li&gt;
@@ -68,20 +68,20 @@ apt-get install limysql++-dev pip install mysql-python  安装完成，可以在
     
     <item>
       <title>Github整合Pull Request和Issue</title>
-      <link>http://blog.allsunday.io/post/2011-11-24-githubzheng-he-pull-requesthe-issue/</link>
+      <link>http://blog.allsunday.io/posts/2011-11-24-githubzheng-he-pull-requesthe-issue/</link>
       <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2011-11-24-githubzheng-he-pull-requesthe-issue/</guid>
+      <guid>http://blog.allsunday.io/posts/2011-11-24-githubzheng-he-pull-requesthe-issue/</guid>
       <description>我们把Github的Issue功能用来做计划，每次一个新功能完成，都会提交一个Pull Request。 提交一个Pull Request会自动新建一个Issue，但是原来已经存在一个Issue了，这样就有2 个相同内容的Issue。今天Google了下，发现只要的提交Pull Request的时候，在Commit信息 里面加入
 close, closes, closed, fixes, fixed  这些关键词，比如 &amp;ldquo;this commit fixes #116&amp;rdquo;，Github会自动关联Issue和Pull Request。</description>
     </item>
     
     <item>
       <title>Linux下用proxychains给所有的程序用上代理</title>
-      <link>http://blog.allsunday.io/post/2011-11-24-linuxxia-yong-proxychainsgei-suo-you-de-cheng-xu-yong-shang-dai-li/</link>
+      <link>http://blog.allsunday.io/posts/2011-11-24-linuxxia-yong-proxychainsgei-suo-you-de-cheng-xu-yong-shang-dai-li/</link>
       <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2011-11-24-linuxxia-yong-proxychainsgei-suo-you-de-cheng-xu-yong-shang-dai-li/</guid>
+      <guid>http://blog.allsunday.io/posts/2011-11-24-linuxxia-yong-proxychainsgei-suo-you-de-cheng-xu-yong-shang-dai-li/</guid>
       <description>Archlinux 下，只需要yaourt -S proxychains就能安装完毕，然后编辑/etc/proxychains.conf，修改proxy的地址为127.0.0.1，端口为7070。
 然后在本地开启ssh代理，ssh -CfNg -D 127.0.0.1:7070 gfreezy@norida.me。一切的准备工作就完成了。
 以后所有需要通过ssh代理来访问网络的程序，只要在命令前面加proxychains就可以了。如访问twitter，只需proxychains wget twitter.com就能获得twitter的首页了。</description>
@@ -89,10 +89,10 @@ close, closes, closed, fixes, fixed  这些关键词，比如 &amp;ldquo;this co
     
     <item>
       <title>uwsgi与nginx的多站点配置</title>
-      <link>http://blog.allsunday.io/post/2011-11-24-uwsgiyu-nginxde-duo-zhan-dian-pei-zhi/</link>
+      <link>http://blog.allsunday.io/posts/2011-11-24-uwsgiyu-nginxde-duo-zhan-dian-pei-zhi/</link>
       <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2011-11-24-uwsgiyu-nginxde-duo-zhan-dian-pei-zhi/</guid>
+      <guid>http://blog.allsunday.io/posts/2011-11-24-uwsgiyu-nginxde-duo-zhan-dian-pei-zhi/</guid>
       <description>From uWSGI Examples
 We have two virtualenv, DJANGOVENVS/pinax1 and DJANGOVENVS/pinax2.
 Each virtualenv contains a pinax site in the directory &amp;lsquo;pinaxsite&amp;rsquo; and a script (called pinax.py) in every pinaxsite/deploy directory (that is a copy of deploy/pinax.wsgi)
@@ -102,20 +102,20 @@ server { listen 8080; server_name sirius.local; location / { include uwsgi_param
     
     <item>
       <title>css中position属性和margin设置</title>
-      <link>http://blog.allsunday.io/post/2011-10-23-setting-position-and-margin-in-css/</link>
+      <link>http://blog.allsunday.io/posts/2011-10-23-setting-position-and-margin-in-css/</link>
       <pubDate>Sun, 23 Oct 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2011-10-23-setting-position-and-margin-in-css/</guid>
+      <guid>http://blog.allsunday.io/posts/2011-10-23-setting-position-and-margin-in-css/</guid>
       <description>position有static(默认),relative,fixed,absolute几个属性，他们作用分别如下：
  static是默认属性，元素位置根据元素在文档中的位置来定位 relative属性下，可以用top，left，right，bottom来定位。这个定位的依据是文档中原来的位置，即相对于static属性下的位置来定位。它在文档中的位置保留不变，可以覆盖其他元素。 fixed属性下，根据浏览器窗口来定位，通过top，left，right，bottom来定位 absolute属性是相对于上一个设置absolute属性的元素来定位，也是top，right，left，bottom来定位  margin设置为负时，此元素即随后的所有元素都会发生位移，此偏移不是相对文档中的位置，而是文档中的位置之间发生变化。 使用margin时，如果没有设置position属性，marging会发生重叠，设置后不会发生重叠。</description>
     </item>
     
     <item>
       <title>css和jquery里面的height属性</title>
-      <link>http://blog.allsunday.io/post/2011-10-23-height-in-css-and-jquery/</link>
+      <link>http://blog.allsunday.io/posts/2011-10-23-height-in-css-and-jquery/</link>
       <pubDate>Sun, 23 Oct 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.allsunday.io/post/2011-10-23-height-in-css-and-jquery/</guid>
+      <guid>http://blog.allsunday.io/posts/2011-10-23-height-in-css-and-jquery/</guid>
       <description> 获取浏览器窗口的可见高度用 document.body.clientHeight 获取当前网页的高度用 document.height  height %100是相对于父元素的高度来设置的。
 jquery获取height属性的几个方法
  $(&#39;&#39;).height() 只获取元素的大小，不包括padding，border，margin $(&#39;&#39;).innerHeight() 包括padding $(&#39;&#39;).outerHeight() 包括padding和border $(&#39;&#39;).outerHeight(true) 包括padding，border，margin  </description>

@@ -24,7 +24,7 @@ jobs:
             # Use if you want to pass some custom arguments to Hugo
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - uses: stefanzweifel/git-auto-commit-action@v4.1.2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          commit_message: hugo publish
+          file_pattern: public

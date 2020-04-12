@@ -242,29 +242,32 @@ jobs:
           submodules: true  # Fetch Hugo themes
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
-      - uses: actions/setup-ruby@v1  # <b class="conum">(1)</b>
+      - uses: actions/setup-ruby@v1  <i class="conum" data-value="1"></i><b>(1)</b>
 
       - name: Publish Site
-        run: make  # <b class="conum">(2)</b>
+        run: make  <i class="conum" data-value="2"></i><b>(2)</b>
 
       - name: Deploy
-        uses: stefanzweifel/git-auto-commit-action@v4.1.2  #<b class="conum">(3)</b>
+        uses: stefanzweifel/git-auto-commit-action@v4.1.2  <i class="conum" data-value="3"></i><b>(3)</b>
         with:
           commit_message: hugo publish</code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<ol>
-<li>
-<p>asciidoctor 需要使用 gem 安装。需要准备好 ruby 环境</p>
-</li>
-<li>
-<p>生成网站</p>
-</li>
-<li>
-<p>将新生成的代码 commit，并 push 到 master</p>
-</li>
-</ol>
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>asciidoctor 需要使用 gem 安装。需要准备好 ruby 环境</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>生成网站</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>将新生成的代码 commit，并 push 到 master</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="title">Makefile</div>
@@ -272,21 +275,21 @@ jobs:
 <pre class="highlight"><code class="language-makefile" data-lang="makefile">HUGO_VERSION:="0.69.0"
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 BIN:="$(ROOT_DIR)/.bin"
-ifeq ($(shell uname), Darwin)     # <b class="conum">(1)</b>
+ifeq ($(shell uname), Darwin)     <i class="conum" data-value="1"></i><b>(1)</b>
 	OS:="macOS"
 else
 	OS:="Linux"
 endif
 
-.PHONY: build    # <b class="conum">(2)</b>
+.PHONY: build    <i class="conum" data-value="2"></i><b>(2)</b>
 
-build: clean install   # <b class="conum">(3)</b>
+build: clean install   <i class="conum" data-value="3"></i><b>(3)</b>
 	cd $(ROOT_DIR)/hugo &amp;&amp; $(BIN)/hugo
 	mv $(ROOT_DIR)/hugo/public/* $(ROOT_DIR)/
 
 install: .bin/hugo
 
-.bin/hugo:   # <b class="conum">(4)</b>
+.bin/hugo:   <i class="conum" data-value="4"></i><b>(4)</b>
 	# install asciidoctor
 	[ $(OS) == "macOS" ] &amp;&amp; brew install asciidoctor || gem install asciidoctor
 
@@ -296,26 +299,30 @@ install: .bin/hugo
 	tar -C .bin -xzvf hugo_extended_$(HUGO_VERSION)_$(OS)-64bit.tar.gz
 	rm -rf hugo_extended_$(HUGO_VERSION)_$(OS)-64bit.tar.gz
 
-clean:   # <b class="conum">(4)</b>
+clean:   <i class="conum" data-value="4"></i><b>(4)</b>
 	ls $(ROOT_DIR) | grep -v -E '^(CNAME|Makefile|hugo|README.md)$$' | xargs rm -rf || true
 	rm -rf $(ROOT_DIR)/hugo/public/</code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<ol>
-<li>
-<p>判断 macos 和 linux</p>
-</li>
-<li>
-<p>默认执行 build</p>
-</li>
-<li>
-<p>每次 build 前，先执行 clean。避免无效的文件影响显示效果</p>
-</li>
-<li>
-<p>将所有生成的文件全部删除</p>
-</li>
-</ol>
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>判断 macos 和 linux</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>默认执行 build</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>每次 build 前，先执行 clean。避免无效的文件影响显示效果</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>将所有生成的文件全部删除</td>
+</tr>
+</table>
 </div>
 </div>
 </div>

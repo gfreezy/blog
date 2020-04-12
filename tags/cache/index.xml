@@ -5,7 +5,6 @@
     <link>http://blog.allsunday.io/tags/cache/</link>
     <description>Recent content in cache on allsunday</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
     <lastBuildDate>Wed, 19 Feb 2014 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://blog.allsunday.io/tags/cache/index.xml" rel="self" type="application/rss+xml" />
@@ -17,8 +16,7 @@
       <pubDate>Wed, 19 Feb 2014 00:00:00 +0000</pubDate>
       
       <guid>http://blog.allsunday.io/posts/2014-02-19-cache-pages-for-anonymous-users-in-mako/</guid>
-      <description>最近遇到网站速度慢的情况，排查许久没查出什么原因。于是想着匿名用户的访问量占据了一半多，如果这一部分的请求全部缓存下来，那么应该能够很大程度上提升网站的响应速度。 之前已经在一些页面里面使用了 Mako 的页面缓存，具体的文档可以查看 Mako 官网
- # CacheImepl的定义 class CMemcachedImpl(CacheImpl): def __init__(self, cache): from mysite.model.init_db import page_mc as mc super(CMemcachedImpl, self).__init__(cache) self.mc = mc def get_or_create(self, key, creation_function, **kw): value = self.mc.get(key) if not value: value = creation_function() timeout = kw.get(&#39;timeout&#39;, 60) try: timeout = int(timeout) except ValueError: timeout = 60 # 防止缓存雪崩，即大量待缓存在同一时刻失效 timeout = timeout + random.randint(0, timeout / 10) self.mc.set(key, value, timeout) return value def set(self, key, value, **kw): timeout = kw.</description>
+      <description>最近遇到网站速度慢的情况，排查许久没查出什么原因。于是想着匿名用户的访问量占据了一半多，如果这一部分的请求全部缓存下来，那么应该能够很大程度</description>
     </item>
     
   </channel>

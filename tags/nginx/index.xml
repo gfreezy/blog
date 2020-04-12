@@ -5,7 +5,6 @@
     <link>http://blog.allsunday.io/tags/nginx/</link>
     <description>Recent content in nginx on allsunday</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
     <lastBuildDate>Wed, 12 Sep 2012 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://blog.allsunday.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
@@ -67,11 +66,7 @@ location ~* \.(gif|jpg|jpeg)$ {
       <pubDate>Thu, 24 Nov 2011 00:00:00 +0000</pubDate>
       
       <guid>http://blog.allsunday.io/posts/2011-11-24-uwsgiyu-nginxde-duo-zhan-dian-pei-zhi/</guid>
-      <description>From uWSGI Examples
-We have two virtualenv, DJANGOVENVS/pinax1 and DJANGOVENVS/pinax2.
-Each virtualenv contains a pinax site in the directory &amp;lsquo;pinaxsite&amp;rsquo; and a script (called pinax.py) in every pinaxsite/deploy directory (that is a copy of deploy/pinax.wsgi)
-Now configure nginx
-server { listen 8080; server_name sirius.local; location / { include uwsgi_params; uwsgi_pass 127.0.0.1:3031; uwsgi_param UWSGI_PYHOME /Users/roberto/DJANGOVENVS/pinax1; uwsgi_param UWSGI_SCRIPT deploy.pinax; uwsgi_param UWSGI_CHDIR /Users/roberto/DJANGOVENVS/pinax1/pinaxsite; } } server { listen 8080; server_name localhost; location / { include uwsgi_params; uwsgi_pass 127.</description>
+      <description>From uWSGI Examples We have two virtualenv, DJANGOVENVS/pinax1 and DJANGOVENVS/pinax2. Each virtualenv contains a pinax site in the directory &amp;lsquo;pinaxsite&amp;rsquo; and a script (called pinax.py) in every pinaxsite/deploy directory (that is a copy of deploy/pinax.wsgi) Now configure nginx server { listen 8080; server_name sirius.local; location / { include uwsgi_params; uwsgi_pass 127.0.0.1:3031; uwsgi_param UWSGI_PYHOME /Users/roberto/DJANGOVENVS/pinax1; uwsgi_param UWSGI_SCRIPT deploy.pinax; uwsgi_param UWSGI_CHDIR /Users/roberto/DJANGOVENVS/pinax1/pinaxsite; } } server { listen 8080; server_name localhost; location /</description>
     </item>
     
   </channel>

@@ -5,7 +5,6 @@
     <link>http://blog.allsunday.io/tags/pyramid/</link>
     <description>Recent content in pyramid on allsunday</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
     <lastBuildDate>Wed, 28 Mar 2012 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://blog.allsunday.io/tags/pyramid/index.xml" rel="self" type="application/rss+xml" />
@@ -17,9 +16,7 @@
       <pubDate>Wed, 28 Mar 2012 00:00:00 +0000</pubDate>
       
       <guid>http://blog.allsunday.io/posts/2012-03-28-pyramid1-dot-3shi-yong-makomo-ban/</guid>
-      <description>Pyramid的pt模板文件可以使用相对路径来查找，如下
-@view_config(route_name=&#39;home&#39;, renderer=templates/mytemplate.pt&#39;)  但是Pyramid的Mako模板不支持用相对路径，你必须使用绝对路径
-@view_config(route_name=&#39;home&#39;, renderer=&#39;translatform:templates/mytemplate.mako&#39;)  或者，可以在 productioin.ini 文件里面加入 mako.directory=translatform:/ ，这样就可以用相对路径来定位mako模板了。</description>
+      <description>Pyramid的pt模板文件可以使用相对路径来查找，如下 @view_config(route_name=&#39;home&#39;, renderer=templates/mytemplate.pt&#39;) 但是Pyramid的Mako模板不支持用相对路径，你必须使用绝对路径 @view_config(route_name=&#39;home&#39;, renderer=&#39;translatform:templates/mytemplate.mako&#39;) 或者，可</description>
     </item>
     
   </channel>

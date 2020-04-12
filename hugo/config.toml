@@ -1,7 +1,8 @@
 baseURL = "http://blog.allsunday.io/"
-languageCode = "en-us"
 title = "allsunday"
 theme = "journal"
+defaultContentLanguage = "cn"
+hasCJKLanguage = true
 
 [params]
 description = "allsunday."

@@ -1,9 +1,9 @@
 ---
 title: "使用hugo+asciidoctor在GitHub搭建博客"
 date: 2020-04-11T18:32:51+08:00
-isCJKLanguage: true
 ---
 = 使用 hugo+asciidoctor 在 GitHub 搭建博客
+:icons: font
 
 == 为什么要使用 hugo + asciidoctor 这样的组合
 https://gohugo.io/[hugo] 对自己的介绍是 *The world’s fastest framework for building websites*。

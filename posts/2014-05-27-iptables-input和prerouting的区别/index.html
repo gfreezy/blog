@@ -89,9 +89,9 @@ drop 的命令，结果生效了，爬虫被成功的屏蔽了。</p>
 才能转发，<code>echo 1 &gt; /proc/sys/net/ipv4/ip_forward</code>）。</p>
 </div>
 <div class="paragraph">
-<p>之前的问题是网关 maize<sup class="footnote" id="_footnote_hostname">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup> 80 端口包在 PREROUTING 链目标 ip 被改成了 carrot<sup class="footnote" id="_footnote_hostname">[<a id="_footnoteref_3" class="footnote" href="#_footnotedef_3" title="View footnote.">3</a>]</sup> 的 ip，所以这个包根本就不会进入到
-maize<sup class="footnote" id="_footnote_hostname">[<a id="_footnoteref_4" class="footnote" href="#_footnotedef_4" title="View footnote.">4</a>]</sup> 的 INPUT 链，也就更谈不上被 drop 掉。
-如果想要在 maize<sup class="footnote" id="_footnote_hostname">[<a id="_footnoteref_5" class="footnote" href="#_footnotedef_5" title="View footnote.">5</a>]</sup> 上面，实现这一个目的。应该在 FORWARD 链上面加 drop 命令。</p>
+<p>之前的问题是网关 maize<sup class="footnoteref">[<a class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> 80 端口包在 PREROUTING 链目标 ip 被改成了 carrot<sup class="footnoteref">[<a class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> 的 ip，所以这个包根本就不会进入到
+maize<sup class="footnoteref">[<a class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> 的 INPUT 链，也就更谈不上被 drop 掉。
+如果想要在 maize<sup class="footnoteref">[<a class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> 上面，实现这一个目的。应该在 FORWARD 链上面加 drop 命令。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -102,18 +102,6 @@ maize<sup class="footnote" id="_footnote_hostname">[<a id="_footnoteref_4" class
 <hr>
 <div class="footnote" id="_footnotedef_1">
 <a href="#_footnoteref_1">1</a>. maize 和 carrot 是机器的 host
-</div>
-<div class="footnote" id="_footnotedef_2">
-<a href="#_footnoteref_2">2</a>. maize 和 carrot 是机器的 host
-</div>
-<div class="footnote" id="_footnotedef_3">
-<a href="#_footnoteref_3">3</a>. maize 和 carrot 是机器的 host
-</div>
-<div class="footnote" id="_footnotedef_4">
-<a href="#_footnoteref_4">4</a>. maize 和 carrot 是机器的 host
-</div>
-<div class="footnote" id="_footnotedef_5">
-<a href="#_footnoteref_5">5</a>. maize 和 carrot 是机器的 host
 </div>
 </div>
 

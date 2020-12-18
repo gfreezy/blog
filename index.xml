@@ -5,10 +5,19 @@
     <link>http://blog.allsunday.io/</link>
     <description>Recent content on allsunday</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 11 Apr 2020 18:32:51 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 18 Dec 2020 18:44:21 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.allsunday.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>API 返回图片格式</title>
+      <link>http://blog.allsunday.io/posts/2020-12-18-api-%E8%BF%94%E5%9B%9E%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F/</link>
+      <pubDate>Fri, 18 Dec 2020 18:44:21 +0800</pubDate>
+      
+      <guid>http://blog.allsunday.io/posts/2020-12-18-api-%E8%BF%94%E5%9B%9E%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F/</guid>
+      <description>简单的实现 我们在给客户端返回图片的时候，一般都是直接返回图片 URL。 比如下方微博的一个 接口： 直接使用了 profile_image_url 字段返回了用户头像。 public_timeline.json [ { &#34;created_at&#34; : &#34;Tue Nov 30</description>
+    </item>
     
     <item>
       <title>使用hugo&#43;asciidoctor在GitHub搭建博客</title>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.69.0" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta property="og:url" content="http://blog.allsunday.io/posts/2020-12-18-api-%E8%BF%94%E5%9B%9E%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F/">
+
+    <title>API 返回图片格式 - allsunday</title>
+        <meta property="og:title" content="API 返回图片格式 - allsunday">
+        <meta property="og:type" content="article">
+        <meta name="description" content="">
+
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/asciidoctor.css">
+    <link rel="stylesheet" href="/css/journal.css">
+    <link href="/index.xml" rel="alternate" type="application/rss+xml" title="allsunday">
+
+</head>
+
+<body>
+<div class="container">
+    
+        <header class="site-header">
+            <div class="site-nav">
+                <h1 class="site-title">
+                    <a href="/">allsunday</a>
+                </h1>
+                <span class="sub-navs">
+                    <a href="/tags">tags</a>
+                    <a href="/index.xml" target="_blank">rss</a>
+                </span>
+            </div>
+            
+        </header>
+    
+
+    
+
+<article class="post">
+    <header class="post-header">
+        <h1 class="post-title">API 返回图片格式</h1>
+        <time class="post-date"
+              datetime="2020-12-18 18:44:21 &#43;0800">
+            18 Dec 2020
+        </time>
+    </header>
+
+    <div class="sect1">
+<h2 id="_简单的实现">简单的实现</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>我们在给客户端返回图片的时候，一般都是直接返回图片 URL。
+比如下方微博的一个 <a href="https://open.weibo.com/wiki/Statuses/public_timeline/en#Response">接口</a>：
+直接使用了 <code>profile_image_url</code> 字段返回了用户头像。</p>
+</div>
+<div class="listingblock">
+<div class="title">public_timeline.json</div>
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">[
+    {
+        "created_at" : "Tue Nov 30 14:34:35 +0800 2010",
+        "text" : "吃力不讨好的事情我是坚决不会再做了，RI你个仙人！发飙~~~~我只想说档次和素质在那里去了，你也就只能在这种地方混！",
+        "truncated" : false,
+        "in_reply_to_status_id" : "",
+        "annotations" :
+        [
+
+        ],
+        "in_reply_to_screen_name" : "",
+        "geo" : null,
+        "user" :
+        {
+            "name" : "习惯寂寞吗",
+            "domain" : "",
+            "geo_enabled" : true,
+            "followers_count" : 5,
+            "statuses_count" : 61,
+            "favourites_count" : 0,
+            "city" : "1",
+            "description" : "",
+            "verified" : false,
+            "id" : 1676792942,
+            "gender" : "f",
+            "friends_count" : 26,
+            "screen_name" : "习惯寂寞吗",
+            "allow_all_act_msg" : false,
+            "following" : false,
+            "url" : "http://1",
+            "profile_image_url" : "http://tp3.sinaimg.cn/1676792942/50/1284648784", <i class="conum" data-value="1"></i><b>(1)</b>
+            "created_at" : "Wed Dec 30 00:00:00 +0800 2009",
+            "province" : "51",
+            "location" : "四川 成都"
+        },
+        "favorited" : false,
+        "in_reply_to_user_id" : "",
+        "id" : 3978753419,
+        "source" : "&lt;a href=\"http://t.sina.com.cn\" rel=\"nofollow\"&gt;新浪微博&lt;/a&gt;"
+    }    // ...
+]</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>用户头像 URL</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_现在需要返回多个尺寸了">现在需要返回多个尺寸了</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>如果相同的 <code>user</code> 结构在不同的地方需要使用不同尺寸的图片，
+我们一般会像下面这样扩展。在 <code>profile_image_url</code> 同级增加一个 <code>large_profile_image_url</code> 字段，
+用来返回大尺寸的图片地址。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    // ...
+    "url" : "http://1",
+    "profile_image_url" : "http://tp3.sinaimg.cn/1676792942/50/1284648784", <i class="conum" data-value="1"></i><b>(1)</b>
+    "large_profile_image_url" : "http://tp3.sinaimg.cn/1676792942/500/1284648784", <i class="conum" data-value="2"></i><b>(2)</b>
+    "created_at" : "Wed Dec 30 00:00:00 +0800 2009",
+    // ...
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>用户头像 URL</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>大尺寸的用户头像 URL</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_越来越多的地方要返回多个尺寸的图片">越来越多的地方要返回多个尺寸的图片</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>随着越来越多的地方返回多个尺寸的图片，我们遇到了一个问题：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>user</code> 的小尺寸图片叫 <code>profile_image_url</code>，大尺寸图片叫`large_profile_image_url`；</p>
+</li>
+<li>
+<p><code>video</code> 的小尺寸图片叫 <code>thumbnail_image_url</code>，大尺寸图片叫 <code>thumbnail_image_url_large</code>；</p>
+</li>
+<li>
+<p>其他的地方又是另外一套</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>每次用图片的时候，都得去看一下文档，到底这个接口大尺寸的图片 key 用的是什么。</p>
+</div>
+<div class="paragraph">
+<p>解决办法也很直观： 抽象出一个 <code>Image</code> 的结构，把所有的图片都统一用同一个 <code>Image</code>。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "small_url": "http://tp3.sinaimg.cn/1676792942/50/1284648784",
+    "medium_url": "http://tp3.sinaimg.cn/1676792942/200/1284648784",
+    "large_url": "http://tp3.sinaimg.cn/1676792942/500/1284648784"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>用抽象的 <code>Image</code> 结构替换原本的 <code>profile_image_url</code> 和 <code>large_profile_image_url</code> 后：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    // ...
+    "url" : "http://1",
+    "profile_image" : {
+      "small_url" : "http://tp3.sinaimg.cn/1676792942/50/1284648784",
+      "large_url": "http://tp3.sinaimg.cn/1676792942/500/1284648784",
+    },
+    "created_at" : "Wed Dec 30 00:00:00 +0800 2009",
+    // ...
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_我们需要支持_webp">我们需要支持 WEBP</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>有了 <code>Image</code> 结构，简单扩展一下就可以了。为了方便客户端排版，我们顺便也增加了图片的原始尺寸（长宽比）。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "small_url": "https://i.image.com/swefasdf/200.jpg",
+    "medium_url": "https://i.image.com/swefasdf/medium.jpg",
+    "large_url": "https://i.image.com/swefasdf/large.jpg",
+    "small_url_webp": "https://i.image.com/swefasdf/200.webp",
+    "medium_url_webp": "https://i.image.com/swefasdf/medium.webp",
+    "large_url_webp": "https://i.image.com/swefasdf/large.webp",
+    "original_width": 1080,  <i class="conum" data-value="1"></i><b>(1)</b>
+    "original_height": 800,  <i class="conum" data-value="2"></i><b>(2)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>原始图片的宽度</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>原始图片的高度</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_我们又要支持_gif_了">我们又要支持 GIF 了</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>好像什么都不用改，我们现在的格式可以直接支持。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "small_url": "https://i.image.com/swefasdf/200.gif",
+    "medium_url": "https://i.image.com/swefasdf/medium.gif",
+    "large_url": "https://i.image.com/swefasdf/large.gif",
+    "small_url_webp": "https://i.image.com/swefasdf/200.webp",
+    "medium_url_webp": "https://i.image.com/swefasdf/medium.webp",
+    "large_url_webp": "https://i.image.com/swefasdf/large.webp",
+    "original_width": 1080,
+    "original_height": 800,
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="plain">后续需要增加更多格式呢</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>比如我们需要在加一个 heic 格式，可以像下面这样改。客户端根据自己支持的格式，选择最合适的图片 URL。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "small_url": "https://i.image.com/swefasdf/200.gif",
+    "medium_url": "https://i.image.com/swefasdf/medium.gif",
+    "large_url": "https://i.image.com/swefasdf/large.gif",
+    "small_url_webp": "https://i.image.com/swefasdf/200.webp",
+    "medium_url_webp": "https://i.image.com/swefasdf/medium.webp",
+    "large_url_webp": "https://i.image.com/swefasdf/large.webp",
+    "small_url_heic": "https://i.image.com/swefasdf/200.heic",
+    "medium_url_heic": "https://i.image.com/swefasdf/medium.heic",
+    "large_url_heic": "https://i.image.com/swefasdf/large.heic",
+    "original_width": 1080,
+    "original_height": 800,
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>这样唯一的一个缺陷是每一张图片需要 <strong>格式 * 尺寸</strong> 个 key，传输的数据量膨胀的比较厉害。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pattern">有没有别的方案呢（变量替换方案）</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>下面是一个想法，通过输出一个图片的 URL 模版，让客户端根据自己的需求去填充这个模版。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "pattern_url": "https://i.image.com/swefasdf/{size}.{format}",  <i class="conum" data-value="1"></i><b>(1)</b>
+    "sizes": ["small", "medium", "large"],  <i class="conum" data-value="2"></i><b>(2)</b>
+    "formats": ["jpg", "webp", "heic"],  <i class="conum" data-value="3"></i><b>(3)</b>
+    "original_width": 1080,  <i class="conum" data-value="4"></i><b>(4)</b>
+    "original_height": 800   <i class="conum" data-value="5"></i><b>(5)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>高级模式：支持参数替换的图片，目前支持 <code>size</code>, <code>format</code> 两种参数</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>size</code> 可选值，根据显示尺寸选择合适的 <code>size</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>format</code> 可选值，根据本地支持的格式，选择最合适的</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>图片原始宽度</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>图片原始高度</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>用这种方式每一张图片只需要传输 5 个 key，即使增加更多的尺寸和格式，传输的数据量也不会有太多的增长。
+但是这种方法要求客户端在使用前需要对 <code>pattern_url</code> 中的变量进行替换，增加了使用的复杂度。
+用使用上的复杂度来换灵活性和传输效率。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_下厨房目前的方案不是特别好的方案">下厨房目前的方案（不是特别好的方案）</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "original_width": 1080,
+    "original_height": 800,
+    "max_width": 4096,
+    "max_height": 4096,
+    "url_pattern": "https://i.image.com/ad3klx80adfasdf.jpg?imageView/1/w/{width}/h/{height}/format/{format}"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>当初设计成这样的原因考虑的是：客户端可以任何根据屏幕尺寸，自己选择合适的尺寸填充到 <code>url_pattern</code> 里面；
+也可以根据本地对不同格式的支持情况，选择最合适的格式。服务器不需要在维护图片尺寸，增加新尺寸不需要服务器做任何事情。</p>
+</div>
+<div class="paragraph">
+<p>事与愿违的是虽然理论上客户端可以选择最适合的尺寸，用最小的流量实现最好的显示效果，但是实际情况中图片的裁剪和 CDN
+打热都需要时间。图片尺寸过多导致 CDN 缓存命中率差，回源后又产生大量的图片裁剪操作， 并且客户端本地的图片缓存命中率也很差。
+整体的耗时变多，用户的体验也反而下降了。</p>
+</div>
+<div class="paragraph">
+<p>无奈之下，我们在客户端预定义好一批图片尺寸，客户端根据需要从预定义好的尺寸中选择最接近尺寸的来替换 <code>url_pattern</code>。</p>
+</div>
+<div class="paragraph">
+<p>这个方案对 gif 的支持存在一个问题：因为客户端并不知道图片原始格式是什么，所以当客户端不支持 webp 时，<code>format</code> 会被替换成 <code>jpg</code>，
+这样 gif 就变成静态图了。</p>
+</div>
+<div class="paragraph">
+<p>我们目前的解决方案是服务器判断下如果原始图片是 gif，则返回的 <code>url_pattern</code> 中不包含 <code>format</code> 变量。客户端的替换并不会改变图片的格式，
+gif 还是保持原本的格式。还有一种方式是在返回的数据中增加 <code>original_format</code> 字段。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "original_width": 1080,
+    "original_height": 800,
+    "original_format": "gif",
+    "max_width": 4096,
+    "max_height": 4096,
+    "url_pattern": "https://i.image.com/ad3klx80adfasdf.gif?imageView/1/w/{width}/h/{height}/format/{format}"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>客户端替换 <code>format</code> 的时候逻辑改为如果支持 webp，则替换成 webp；如果不支持 webp，则替换成 <code>original_format</code>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_总个结">总个结</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>一般情况下，使用 <a href="#plain">后续需要增加更多格式呢</a> 的方案即可；如果需要灵活性或者希望减少传输的数据量，可以参考 <a href="#pattern">有没有别的方案呢（变量替换方案）</a>。</p>
+</div>
+</div>
+</div>
+
+
+</article>
+
+
+
+    <footer class="site-footer">
+        <span itemscope itemtype="http://schema.org/Person">
+    <link itemprop="url" href="http://blog.allsunday.io/">
+    <span itemprop="name"></span>
+
+    <br>
+
+    <a itemprop="sameAs" href="https://github.com/gfreezy" title="GitHub">
+            Github
+        </a>
+
+    
+
+    
+</span>
+
+        
+    </footer>
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>

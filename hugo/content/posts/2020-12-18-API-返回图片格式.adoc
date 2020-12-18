@@ -1,0 +1,242 @@
+---
+title: "API 返回图片格式"
+date: 2020-12-18T18:44:21+08:00
+---
+= API 返回图片格式
+:icons: font
+
+== 简单的实现
+我们在给客户端返回图片的时候，一般都是直接返回图片 URL。
+比如下方微博的一个 https://open.weibo.com/wiki/Statuses/public_timeline/en#Response[接口]：
+直接使用了 `profile_image_url` 字段返回了用户头像。
+
+.public_timeline.json
+[source,json]
+----
+[
+    {
+        "created_at" : "Tue Nov 30 14:34:35 +0800 2010",
+        "text" : "吃力不讨好的事情我是坚决不会再做了，RI你个仙人！发飙~~~~我只想说档次和素质在那里去了，你也就只能在这种地方混！",
+        "truncated" : false,
+        "in_reply_to_status_id" : "",
+        "annotations" :
+        [
+
+        ],
+        "in_reply_to_screen_name" : "",
+        "geo" : null,
+        "user" :
+        {
+            "name" : "习惯寂寞吗",
+            "domain" : "",
+            "geo_enabled" : true,
+            "followers_count" : 5,
+            "statuses_count" : 61,
+            "favourites_count" : 0,
+            "city" : "1",
+            "description" : "",
+            "verified" : false,
+            "id" : 1676792942,
+            "gender" : "f",
+            "friends_count" : 26,
+            "screen_name" : "习惯寂寞吗",
+            "allow_all_act_msg" : false,
+            "following" : false,
+            "url" : "http://1",
+            "profile_image_url" : "http://tp3.sinaimg.cn/1676792942/50/1284648784", // <1>
+            "created_at" : "Wed Dec 30 00:00:00 +0800 2009",
+            "province" : "51",
+            "location" : "四川 成都"
+        },
+        "favorited" : false,
+        "in_reply_to_user_id" : "",
+        "id" : 3978753419,
+        "source" : "<a href=\"http://t.sina.com.cn\" rel=\"nofollow\">新浪微博</a>"
+    }    // ...
+]
+----
+<1> 用户头像 URL
+
+== 现在需要返回多个尺寸了
+如果相同的 `user` 结构在不同的地方需要使用不同尺寸的图片，
+我们一般会像下面这样扩展。在 `profile_image_url` 同级增加一个 `large_profile_image_url` 字段，
+用来返回大尺寸的图片地址。
+
+[source,json]
+----
+{
+    // ...
+    "url" : "http://1",
+    "profile_image_url" : "http://tp3.sinaimg.cn/1676792942/50/1284648784", // <1>
+    "large_profile_image_url" : "http://tp3.sinaimg.cn/1676792942/500/1284648784", // <2>
+    "created_at" : "Wed Dec 30 00:00:00 +0800 2009",
+    // ...
+}
+----
+<1> 用户头像 URL
+<2> 大尺寸的用户头像 URL
+
+== 越来越多的地方要返回多个尺寸的图片
+随着越来越多的地方返回多个尺寸的图片，我们遇到了一个问题：
+
+* `user` 的小尺寸图片叫 `profile_image_url`，大尺寸图片叫`large_profile_image_url`；
+* `video` 的小尺寸图片叫 `thumbnail_image_url`，大尺寸图片叫 `thumbnail_image_url_large`；
+* 其他的地方又是另外一套
+
+每次用图片的时候，都得去看一下文档，到底这个接口大尺寸的图片 key 用的是什么。
+
+解决办法也很直观： 抽象出一个 `Image` 的结构，把所有的图片都统一用同一个 `Image`。
+
+[source,json]
+----
+{
+    "small_url": "http://tp3.sinaimg.cn/1676792942/50/1284648784",
+    "medium_url": "http://tp3.sinaimg.cn/1676792942/200/1284648784",
+    "large_url": "http://tp3.sinaimg.cn/1676792942/500/1284648784"
+}
+----
+
+
+用抽象的 `Image` 结构替换原本的 `profile_image_url` 和 `large_profile_image_url` 后：
+
+[source,json]
+----
+{
+    // ...
+    "url" : "http://1",
+    "profile_image" : {
+      "small_url" : "http://tp3.sinaimg.cn/1676792942/50/1284648784",
+      "large_url": "http://tp3.sinaimg.cn/1676792942/500/1284648784",
+    },
+    "created_at" : "Wed Dec 30 00:00:00 +0800 2009",
+    // ...
+}
+----
+
+== 我们需要支持 WEBP
+有了 `Image` 结构，简单扩展一下就可以了。为了方便客户端排版，我们顺便也增加了图片的原始尺寸（长宽比）。
+
+[source,json]
+----
+{
+    "small_url": "https://i.image.com/swefasdf/200.jpg",
+    "medium_url": "https://i.image.com/swefasdf/medium.jpg",
+    "large_url": "https://i.image.com/swefasdf/large.jpg",
+    "small_url_webp": "https://i.image.com/swefasdf/200.webp",
+    "medium_url_webp": "https://i.image.com/swefasdf/medium.webp",
+    "large_url_webp": "https://i.image.com/swefasdf/large.webp",
+    "original_width": 1080,  // <1>
+    "original_height": 800,  // <2>
+}
+----
+<1> 原始图片的宽度
+<2> 原始图片的高度
+
+== 我们又要支持 GIF 了
+好像什么都不用改，我们现在的格式可以直接支持。
+
+[source,json]
+----
+{
+    "small_url": "https://i.image.com/swefasdf/200.gif",
+    "medium_url": "https://i.image.com/swefasdf/medium.gif",
+    "large_url": "https://i.image.com/swefasdf/large.gif",
+    "small_url_webp": "https://i.image.com/swefasdf/200.webp",
+    "medium_url_webp": "https://i.image.com/swefasdf/medium.webp",
+    "large_url_webp": "https://i.image.com/swefasdf/large.webp",
+    "original_width": 1080,
+    "original_height": 800,
+}
+----
+
+[#plain]
+== 后续需要增加更多格式呢
+比如我们需要在加一个 heic 格式，可以像下面这样改。客户端根据自己支持的格式，选择最合适的图片 URL。
+
+[source,json]
+----
+{
+    "small_url": "https://i.image.com/swefasdf/200.gif",
+    "medium_url": "https://i.image.com/swefasdf/medium.gif",
+    "large_url": "https://i.image.com/swefasdf/large.gif",
+    "small_url_webp": "https://i.image.com/swefasdf/200.webp",
+    "medium_url_webp": "https://i.image.com/swefasdf/medium.webp",
+    "large_url_webp": "https://i.image.com/swefasdf/large.webp",
+    "small_url_heic": "https://i.image.com/swefasdf/200.heic",
+    "medium_url_heic": "https://i.image.com/swefasdf/medium.heic",
+    "large_url_heic": "https://i.image.com/swefasdf/large.heic",
+    "original_width": 1080,
+    "original_height": 800,
+}
+----
+
+这样唯一的一个缺陷是每一张图片需要 **格式 * 尺寸** 个 key，传输的数据量膨胀的比较厉害。
+
+[#pattern]
+== 有没有别的方案呢（变量替换方案）
+
+下面是一个想法，通过输出一个图片的 URL 模版，让客户端根据自己的需求去填充这个模版。
+
+[source,json]
+----
+{
+    "pattern_url": "https://i.image.com/swefasdf/{size}.{format}",  // <1>
+    "sizes": ["small", "medium", "large"],  // <2>
+    "formats": ["jpg", "webp", "heic"],  // <3>
+    "original_width": 1080,  // <4>
+    "original_height": 800   // <5>
+}
+----
+<1> 高级模式：支持参数替换的图片，目前支持 `size`, `format` 两种参数
+<2> `size` 可选值，根据显示尺寸选择合适的 `size`
+<3> `format` 可选值，根据本地支持的格式，选择最合适的
+<4> 图片原始宽度
+<5> 图片原始高度
+
+用这种方式每一张图片只需要传输 5 个 key，即使增加更多的尺寸和格式，传输的数据量也不会有太多的增长。
+但是这种方法要求客户端在使用前需要对 `pattern_url` 中的变量进行替换，增加了使用的复杂度。
+用使用上的复杂度来换灵活性和传输效率。
+
+== 下厨房目前的方案（不是特别好的方案）
+[source,json]
+----
+{
+    "original_width": 1080,
+    "original_height": 800,
+    "max_width": 4096,
+    "max_height": 4096,
+    "url_pattern": "https://i.image.com/ad3klx80adfasdf.jpg?imageView/1/w/{width}/h/{height}/format/{format}"
+}
+----
+
+当初设计成这样的原因考虑的是：客户端可以任何根据屏幕尺寸，自己选择合适的尺寸填充到 `url_pattern` 里面；
+也可以根据本地对不同格式的支持情况，选择最合适的格式。服务器不需要在维护图片尺寸，增加新尺寸不需要服务器做任何事情。
+
+事与愿违的是虽然理论上客户端可以选择最适合的尺寸，用最小的流量实现最好的显示效果，但是实际情况中图片的裁剪和 CDN
+打热都需要时间。图片尺寸过多导致 CDN 缓存命中率差，回源后又产生大量的图片裁剪操作， 并且客户端本地的图片缓存命中率也很差。
+整体的耗时变多，用户的体验也反而下降了。
+
+无奈之下，我们在客户端预定义好一批图片尺寸，客户端根据需要从预定义好的尺寸中选择最接近尺寸的来替换 `url_pattern`。
+
+这个方案对 gif 的支持存在一个问题：因为客户端并不知道图片原始格式是什么，所以当客户端不支持 webp 时，`format` 会被替换成 `jpg`，
+这样 gif 就变成静态图了。
+
+我们目前的解决方案是服务器判断下如果原始图片是 gif，则返回的 `url_pattern` 中不包含 `format` 变量。客户端的替换并不会改变图片的格式，
+gif 还是保持原本的格式。还有一种方式是在返回的数据中增加 `original_format` 字段。
+
+[source,json]
+----
+{
+    "original_width": 1080,
+    "original_height": 800,
+    "original_format": "gif",
+    "max_width": 4096,
+    "max_height": 4096,
+    "url_pattern": "https://i.image.com/ad3klx80adfasdf.gif?imageView/1/w/{width}/h/{height}/format/{format}"
+}
+----
+
+客户端替换 `format` 的时候逻辑改为如果支持 webp，则替换成 webp；如果不支持 webp，则替换成 `original_format`。
+
+== 总个结
+一般情况下，使用 <<plain>> 的方案即可；如果需要灵活性或者希望减少传输的数据量，可以参考 <<pattern>>。
